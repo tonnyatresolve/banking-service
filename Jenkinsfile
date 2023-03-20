@@ -9,7 +9,7 @@ node {
 
     stage ('Artifactory configuration') {
         // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-        server = Artifactory.server docker1
+        server = Artifactory.server 'docker1'
 
         rtMaven = Artifactory.newMavenBuild()
         // Tool name from Jenkins configuration
