@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Git clone') {
             steps {
-                echo 'Building..'
+                git 'https://github.com/tonnyatresolve/test-frog-notification.git'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
                 echo 'Testing..'
             }
