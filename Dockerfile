@@ -9,7 +9,7 @@ ENV JAVA_OPTS="" \
 
 #RUN mkdir ${WORKSPACE}
 
-COPY target/funki.notification-0.0.1-SNAPSHOT.jar ${WORKSPACE}/app.jar
+COPY target/test.notification-0.0.1-SNAPSHOT.jar ${WORKSPACE}/app.jar
 
 WORKDIR ${WORKSPACE}
 
