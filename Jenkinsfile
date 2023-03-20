@@ -10,14 +10,14 @@ node {
     stage ('Artifactory configuration') {
         env.JAVA_HOME = '/opt/jdk-15.0.2'
         // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-        server = Artifactory.server 'docker1'
+        server = Artifactory.server 'docker2'
 
         rtMaven = Artifactory.newMavenBuild()
         // Tool name from Jenkins configuration
         rtMaven.tool = 'Maven'
         rtMaven.deployer releaseRepo: 'test-maven', snapshotRepo: 'test-maven', server: server
         //rtMaven.deployer releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
-        rtMaven.resolver releaseRepo: 'xxxtest-maven-virtual', snapshotRepo: 'xxxtest-maven-virtual', server: server
+        rtMaven.resolver releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
         buildInfo = Artifactory.newBuildInfo()
     }
 
