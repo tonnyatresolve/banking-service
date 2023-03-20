@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build code') {
             steps {
-                sh 'whoami'
+                sh 'mvn deploy'
             }
         }
         stage('Deploy') {
