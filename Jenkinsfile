@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Testing..'
+                echo 'mvn deploy'
             }
         }
         stage('Deploy') {
