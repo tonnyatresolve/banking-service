@@ -17,7 +17,7 @@ pipeline {
                 withMaven (
                     maven: 'Maven'
                 ) {
-                    sh "/opt/apache-maven-3.9.1/bin/mvn deploy"
+                    sh "/opt/apache-maven-3.9.1/bin/mvn deploy -s settings.xml"
                 }
             }
         }
