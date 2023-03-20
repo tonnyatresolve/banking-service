@@ -1,0 +1,13 @@
+Hi [(${assignee})],
+
+CRM Notification - Backoffice CRM
+
+The below information is the CRM message from [(${assigner})]:
+
+Record Date: [(${recordDate})]
+Follow Up: [(${followUp})]
+Message: [(${content})]
+Url: [(${url})]
+
+Best Regards,
+Test Finance System

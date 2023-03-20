@@ -1,0 +1,38 @@
+Hi CS team,
+
+Loan Application Request Form - Consumer Web
+
+The below information is the loan application request from Consumer Web:
+ID: [(${id})]
+Status: [(${status})]
+Loan Amount: [(${loanAmount})]
+Repayment Cycle: [(${repayCycle})]
+Loan purpose: [(${loanPurpose})]
+Salutation: [(${salutation})]
+English Name: [(${engName})]
+Hong Kong ID: [(${hkid})]
+Date of birth: [(${dob})]
+Home address: flat: [(${flat})], floor: [(${floor})], block: [(${block})], building: [(${building})], street: [(${street})], area: [(${area})]
+Living Period: [(${livingPeriod})]
+Nationality: [(${nationality})]
+Mobile: [(${mobile})]
+Email: [(${email})]
+Position: [(${position})]
+Monthly income: [(${monthlyIncome})]
+Company name: [(${companyName})]
+Company phone: [(${companyPhone})]
+Company address: flat: [(${companyFlat})], floor: [(${companyFloor})], block: [(${companyBlock})], building: [(${companyBuilding})], street: [(${companyStreet})], area: [(${companyArea})]
+Department: [(${department})]
+Job nature: [(${jobNature})]
+Employment period (year): [(${employmentYear})]
+Employment period (month): [(${employmentMonth})]
+Other income: [(${otherIncome})]
+Marital status: [(${maritalStatus})]
+Living status: [(${livingStatus})]
+Housing expenses: [(${housingExpenses})]
+TU Consent: [(${tuConcent})]
+Personal Information Consent: [(${personalInfoConcent})]
+Marketing Communication Consent: [(${marketingCommunicationConcent})]
+
+Best Regards,
+Test Finance System
