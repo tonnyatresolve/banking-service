@@ -21,9 +21,9 @@ node {
     }
 
     stage ('Exec Maven') {
-        rtMaven.opts = '-X'
-        //rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
-        rtMaven.run pom: 'pom.xml', goals: 'deploy', buildInfo: buildInfo
+        rtMaven.opts = '--debug'
+        rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
+        //rtMaven.run pom: 'pom.xml', goals: 'deploy', buildInfo: buildInfo
 
         /*
         withMaven (
