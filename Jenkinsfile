@@ -17,10 +17,11 @@ node {
         rtMaven.deployer releaseRepo: 'test-maven', snapshotRepo: 'test-maven', server: server
         rtMaven.resolver releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
         buildInfo = Artifactory.newBuildInfo()
+        echo buildInfo
     }
 
     stage ('Exec Maven') {
-        //rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
+        rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
         //rtMaven.run pom: 'pom.xml', goals: 'deploy', buildInfo: buildInfo
         echo "exec maven"
     }
