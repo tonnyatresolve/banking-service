@@ -7,9 +7,9 @@ pipeline {
                 git 'https://github.com/tonnyatresolve/test-frog-notification.git'
             }
         }
-        stage('Build') {
+        stage('Build code') {
             steps {
-                echo 'mvn deploy'
+                sh 'mvn deploy'
             }
         }
         stage('Deploy') {
