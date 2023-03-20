@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build code') {
             steps {
-                withMaven {
+                Maven {
                     sh "mvn deploy"
                 }
             }
