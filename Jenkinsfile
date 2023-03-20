@@ -14,8 +14,8 @@ node {
         rtMaven = Artifactory.newMavenBuild()
         // Tool name from Jenkins configuration
         rtMaven.tool = 'Maven'
-        rtMaven.deployer releaseRepo: 'test-maven', snapshotRepo: ARTIFACTORY_LOCAL_SNAPSHOT_REPO, server: server
-        rtMaven.resolver releaseRepo: 'test-maven-virtual', snapshotRepo: ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO, server: server
+        rtMaven.deployer releaseRepo: 'test-maven', snapshotRepo: 'test-maven', server: server
+        rtMaven.resolver releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
         buildInfo = Artifactory.newBuildInfo()
     }
 
