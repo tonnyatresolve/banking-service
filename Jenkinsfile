@@ -4,12 +4,14 @@ pipeline {
     stages {
         stage('Git clone') {
             steps {
-                git 'https://github.com/tonnyatresolve/test-frog-notification.git'
+                git url 'https://github.com/tonnyatresolve/test-frog-notification.git'
             }
         }
         stage('Build code') {
             steps {
-                sh 'mvn deploy'
+                withMaven {
+                    sh "mvn clean verify"
+                }
             }
         }
         stage('Deploy') {
