@@ -17,7 +17,7 @@ node {
         rtMaven.tool = 'Maven'
         rtMaven.deployer releaseRepo: 'test-maven', snapshotRepo: 'test-maven', server: server
         //rtMaven.deployer releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
-        rtMaven.resolver releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
+        rtMaven.resolver releaseRepo: 'xxxtest-maven-virtual', snapshotRepo: 'xxxtest-maven-virtual', server: server
         buildInfo = Artifactory.newBuildInfo()
     }
 
