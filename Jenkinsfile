@@ -16,8 +16,6 @@ pipeline {
                 withMaven (
                     maven: 'Maven'
                 ) {
-                    sh "export JAVA_HOME=/root/jdk-15.0.2"
-                    sh "export PATH=$JAVA_HOME/bin:/root/apache-maven-3.9.1/bin:$PATH"
                     sh "mvn deploy"
                 }
             }
