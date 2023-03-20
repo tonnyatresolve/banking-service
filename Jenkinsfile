@@ -20,7 +20,6 @@ node {
     }
 
     stage ('Exec Maven') {
-        env.JAVA_HOME = '/opt/jdk-15.0.2'
         //rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
         rtMaven.run pom: 'pom.xml', goals: 'deploy', buildInfo: buildInfo
 
