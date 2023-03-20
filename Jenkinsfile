@@ -20,7 +20,7 @@ node {
     }
 
     stage ('Exec Maven') {
-        rtMaven.run pom: 'maven-examples/maven-example/pom.xml', goals: 'clean install', buildInfo: buildInfo
+        rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
     }
 
     stage ('Publish build info') {
