@@ -4,7 +4,7 @@ node {
     def buildInfo
 
     stage ('Clone') {
-        git url: 'https://github.com/jfrog/project-examples.git'
+        git url: 'https://github.com/tonnyatresolve/test-frog-notification.git'
     }
 
     stage ('Artifactory configuration') {
