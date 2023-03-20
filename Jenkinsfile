@@ -17,7 +17,7 @@ pipeline {
                 withMaven (
                     maven: 'Maven'
                 ) {
-                    sh "mvn deploy"
+                    sh "/root/apache-maven-3.9.1/bin/mvn deploy"
                 }
             }
         }
