@@ -17,7 +17,6 @@ node {
         rtMaven.deployer releaseRepo: 'test-maven', snapshotRepo: 'test-maven', server: server
         rtMaven.resolver releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
         buildInfo = Artifactory.newBuildInfo()
-        echo buildInfo
     }
 
     stage ('Exec Maven') {
