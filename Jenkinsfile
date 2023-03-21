@@ -8,7 +8,7 @@ node {
     }
 
     stage ('Artifactory configuration') {
-        env.JAVA_HOME = '/opt/jdk-15.0.2'
+        // env.JAVA_HOME = '/opt/jdk-15.0.2'
         // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
         server = Artifactory.server 'docker2'
 
@@ -25,7 +25,6 @@ node {
         //rtMaven.opts = '--debug'
 
         rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
-        sleep 3000 // seconds
         //rtMaven.run pom: 'pom.xml', goals: 'deploy', buildInfo: buildInfo
 
         /*
