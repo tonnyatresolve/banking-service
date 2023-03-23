@@ -33,8 +33,7 @@ node {
     }
 
     stage ('Xray scan') {
-        waitUntil {
-            try {
+        try {
                 def scanConfig = [
                         'buildName'      : buildInfo.name,
                         'buildNumber'    : buildInfo.number,
@@ -42,7 +41,9 @@ node {
                 ]
                 def scanResult = server.xrayScan scanConfig
                 echo scanResult as String
-            } catch(error) {
+        } catch(error) {
+            echo "First build failed, let's retry if accepted"
+            retry(2) {
                 input "Retry the job ?"
                 def scanConfig = [
                         'buildName'      : buildInfo.name,
