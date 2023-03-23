@@ -44,7 +44,13 @@ node {
                 echo scanResult as String
             } catch(error) {
                 input "Retry the job ?"
-                false
+                def scanConfig = [
+                        'buildName'      : buildInfo.name,
+                        'buildNumber'    : buildInfo.number,
+                        'failBuild'      : true
+                ]
+                def scanResult = server.xrayScan scanConfig
+                echo scanResult as String
             }
         }
     }
