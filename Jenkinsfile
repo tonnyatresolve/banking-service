@@ -68,7 +68,7 @@ node {
     
         // Step 3: Push the image to Artifactory.
         // Make sure that <artifactoryDockerRegistry> is configured to reference <targetRepo> Artifactory repository. In case it references a different repository, your build will fail with "Could not find manifest.json in Artifactory..." following the push.
-        def dockerBuildInfo = rtDocker.push '<artifactoryDockerRegistry>/hello-world:latest', '<targetRepo>'
+        def dockerBuildInfo = rtDocker.push '192.168.11.60:8082/test-docker/openjdk:21-jdk', 'openjdk:21-jdk'
         
         // Step 4: Publish the build-info to Artifactory:
         server.publishBuildInfo dockerBuildInfo
