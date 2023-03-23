@@ -57,7 +57,7 @@ node {
     }
 
     stage ('Build Docker') {
-        def server = Artifactory.server 'docker2'
+        //def server = Artifactory.server 'docker2'
    
         // Step 2: Create an Artifactory Docker instance:
         def rtDocker = Artifactory.docker server: server
