@@ -32,7 +32,7 @@ node {
         server.publishBuildInfo buildInfo
     }
 
-    stage ('Xray scan') {
+    stage ('Xray library scan') {
         try {
                 def scanConfig = [
                         'buildName'      : buildInfo.name,
@@ -55,7 +55,8 @@ node {
             }
         }
     }
-
+    
+    /*
     stage ('Build Docker') {
         sh 'docker pull openjdk:21-jdk'
         sh 'docker tag openjdk:21-jdk 192.168.11.60:8082/test-docker/openjdk:21-jdk'
@@ -75,4 +76,29 @@ node {
         // Step 4: Publish the build-info to Artifactory:
         server.publishBuildInfo dockerBuildInfo
     }
+
+    stage ('Xray docer scan') {
+        try {
+                def scanConfig = [
+                        'buildName'      : dockerBuildInfo.name,
+                        'buildNumber'    : dockerBuildInfo.number,
+                        'failBuild'      : true
+                ]
+                def scanResult = server.xrayScan scanConfig
+                echo scanResult as String
+        } catch(error) {
+            echo "First build failed, let's retry if accepted"
+            retry(2) {
+                input "Retry the job ?"
+                def scanConfig = [
+                        'buildName'      : buildInfo.name,
+                        'buildNumber'    : buildInfo.number,
+                        'failBuild'      : true
+                ]
+                def scanResult = server.xrayScan scanConfig
+                echo scanResult as String
+            }
+        }
+    }
+    */
 }
