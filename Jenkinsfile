@@ -58,6 +58,7 @@ node {
 
     stage ('Build Docker') {
         sh 'docker pull openjdk:21-jdk'
+        sh 'docker tag openjdk:21-jdk 192.168.11.60:8082/test-docker/openjdk:21-jdk'
         //def server = Artifactory.server 'docker2'
    
         // Step 2: Create an Artifactory Docker instance:
