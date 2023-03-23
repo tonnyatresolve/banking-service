@@ -25,14 +25,6 @@ node {
 
         rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
         //rtMaven.run pom: 'pom.xml', goals: 'deploy', buildInfo: buildInfo
-
-        /*
-        withMaven (
-                    maven: 'Maven'
-                ) {
-                    sh "/opt/apache-maven-3.9.1/bin/mvn clean install"
-                }
-        */
         echo "exec maven"
     }
 
