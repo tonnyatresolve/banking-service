@@ -19,16 +19,12 @@ node {
         //rtMaven.deployer releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
         rtMaven.resolver releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
         buildInfo = Artifactory.newBuildInfo()
-    }
 
-    stage ('Exec Maven') {
-
+        // Exec Maven
         rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
         //rtMaven.run pom: 'pom.xml', goals: 'deploy', buildInfo: buildInfo
-        echo "exec maven"
-    }
-
-    stage ('Publish build info') {
+        
+        // Publish build info
         server.publishBuildInfo buildInfo
     }
 
@@ -56,6 +52,9 @@ node {
         }
     }
     
+    stage ('Deploy') {
+        echo "Deploy"
+    }
     /*
     stage ('Build Docker') {
         sh 'docker pull openjdk:21-jdk'
