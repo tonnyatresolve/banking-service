@@ -40,7 +40,7 @@ node {
         } catch(error) {
             echo "First build failed, let's retry if accepted"
             retry(2) {
-                input "Retry the job ?"
+                input "Retry the scan?"
                 def scanConfig = [
                         'buildName'      : buildInfo.name,
                         'buildNumber'    : buildInfo.number,
