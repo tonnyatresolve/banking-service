@@ -9,7 +9,7 @@ node {
     }
 
     stage ('Push to artifactory') {
-        env.JAVA_HOME = '/opt/jdk-15.0.2'
+        // env.JAVA_HOME = '/opt/jdk-15.0.2'
         // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
         server = Artifactory.server 'jfartifactory'
 
