@@ -10,12 +10,13 @@ node {
 
     stage ('Push to artifactory') {
         // env.JAVA_HOME = '/opt/jdk-15.0.2'
+        env.JAVA_HOME = '/opt/jdk-15.0.2'
         // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
         server = Artifactory.server 'jfartifactory'
 
         rtMaven = Artifactory.newMavenBuild()
         // Tool name from Jenkins configuration
-        rtMaven.tool = 'Maven3.6.3'
+        rtMaven.tool = 'Maven'
         rtMaven.deployer releaseRepo: 'test-maven', snapshotRepo: 'test-maven', server: server
         //rtMaven.deployer releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
         rtMaven.resolver releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
