@@ -3,6 +3,7 @@ node {
     def rtMaven
     def buildInfo
 
+
     stage ('Git checkout') {
         git url: 'https://github.com/tonnyatresolve/test-frog-notification.git'
     }
