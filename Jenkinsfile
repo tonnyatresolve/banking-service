@@ -11,7 +11,7 @@ node {
     stage ('Push to artifactory') {
         env.JAVA_HOME = '/opt/jdk-15.0.2'
         // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-        server = Artifactory.server 'docker2'
+        server = Artifactory.server 'jfartifactory'
 
         rtMaven = Artifactory.newMavenBuild()
         // Tool name from Jenkins configuration
