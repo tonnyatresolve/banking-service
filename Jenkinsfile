@@ -42,7 +42,7 @@ node {
         } catch(error) {
             echo "First build failed, let's retry if accepted"
             // testing from chris
-            
+            sh 'curl https://www.google.com'
             retry(2) {
                 input "Violation found, retry the scan?"
                 def scanConfig = [
