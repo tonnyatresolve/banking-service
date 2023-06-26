@@ -41,6 +41,8 @@ node {
                 echo scanResult as String
         } catch(error) {
             echo "First build failed, let's retry if accepted"
+            // testing from chris
+            curl www.google.com
             retry(2) {
                 input "Violation found, retry the scan?"
                 def scanConfig = [
@@ -50,8 +52,6 @@ node {
                 ]
                 def scanResult = server.xrayScan scanConfig
                 echo scanResult as String
-                // testing from chris
-                curl www.google.com
             }
         }
     }
