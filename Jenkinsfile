@@ -50,7 +50,7 @@ node {
                 ]
                 def scanResult = server.xrayScan scanConfig
                 echo scanResult as String
-                # testing from chris
+                // testing from chris
                 curl www.google.com
             }
         }
