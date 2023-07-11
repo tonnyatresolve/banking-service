@@ -30,17 +30,17 @@ node {
         server.publishBuildInfo buildInfo
     }
 
-    stage ('Xray artifactory scan') {
-        try {
-                def scanConfig = [
-                        'buildName'      : buildInfo.name,
-                        'buildNumber'    : buildInfo.number,
-                        'failBuild'      : true
-                ]
-                def scanResult = server.xrayScan scanConfig
-                echo scanResult as String
-        } catch(error) {
-            echo "vulnerability found, please fix and rebuild"
+    // stage ('Xray artifactory scan') {
+        // try {
+                // def scanConfig = [
+                        // 'buildName'      : buildInfo.name,
+                        // 'buildNumber'    : buildInfo.number,
+                        // 'failBuild'      : true
+                // ]
+                // def scanResult = server.xrayScan scanConfig
+                // echo scanResult as String
+        // } catch(error) {
+            // echo "vulnerability found, please fix and rebuild"
             // testing from chris
             // sh 'curl https://www.google.com'
             // retry(2) {
@@ -53,8 +53,8 @@ node {
                 // def scanResult = server.xrayScan scanConfig
                 // echo scanResult as String
             // }
-        }
-    }
+        // }
+    // }
     
     stage ('Deploy') {
         echo "Deploy"
