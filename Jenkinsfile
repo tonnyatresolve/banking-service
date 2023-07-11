@@ -40,19 +40,19 @@ node {
                 def scanResult = server.xrayScan scanConfig
                 echo scanResult as String
         } catch(error) {
-            echo "First build failed, let's retry if accepted"
+            echo "vulnerability found, please fix and rebuild"
             // testing from chris
-            sh 'curl https://www.google.com'
-            retry(2) {
-                input "Violation found, retry the scan?"
-                def scanConfig = [
-                        'buildName'      : buildInfo.name,
-                        'buildNumber'    : buildInfo.number,
-                        'failBuild'      : true
-                ]
-                def scanResult = server.xrayScan scanConfig
-                echo scanResult as String
-            }
+            // sh 'curl https://www.google.com'
+            // retry(2) {
+                // input "Violation found, retry the scan?"
+                // def scanConfig = [
+                        // 'buildName'      : buildInfo.name,
+                        // 'buildNumber'    : buildInfo.number,
+                        // 'failBuild'      : true
+                // ]
+                // def scanResult = server.xrayScan scanConfig
+                // echo scanResult as String
+            // }
         }
     }
     
