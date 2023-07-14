@@ -32,8 +32,8 @@ node {
     }
 
     stage ('Xray artifactory scan') {
-        echo ${buildInfo.name}
-        echo ${buildInfo.number}
+        echo buildInfo.name
+        echo buildInfo.number
         def scanConfig = [
             'buildName'      : buildInfo.name,
             'buildNumber'    : buildInfo.number,
