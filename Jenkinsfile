@@ -21,6 +21,7 @@ node {
         //rtMaven.deployer releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
         rtMaven.resolver releaseRepo: 'test-maven-virtual', snapshotRepo: 'test-maven-virtual', server: server
         buildInfo = Artifactory.newBuildInfo()
+        buildInfo.name = "xdo/sample/banking-service2"
 
         // Exec Maven
         rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
@@ -31,6 +32,8 @@ node {
     }
 
     stage ('Xray artifactory scan') {
+        echo ${buildInfo.name}
+        echo ${buildInfo.number}
         def scanConfig = [
             'buildName'      : buildInfo.name,
             'buildNumber'    : buildInfo.number,
