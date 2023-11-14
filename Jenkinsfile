@@ -32,6 +32,7 @@ node {
     }
 
     stage ('Xray artifactory scan') {
+      try{
         echo buildInfo.name
         echo buildInfo.number
         def scanConfig = [
@@ -40,7 +41,12 @@ node {
             'failBuild'      : true
         ]
         def scanResult = server.xrayScan scanConfig
-        echo "test"
+        // echo scanResult as String
+      } catch(error) {
+        echo "error test"
+      }
+
+        // echo "test"
         // echo scanResult as String
         // echo scanResult > buildInfo.name-buildInfo.number-result.txt
         // ls -rlt
