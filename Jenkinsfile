@@ -2,6 +2,8 @@ node {
     def server
     def rtMaven
     def buildInfo
+    def scanConfig
+    def scanResult
 
 
     stage ('Git checkout') {
@@ -32,18 +34,22 @@ node {
     }
 
     stage ('Xray artifactory scan') {
+      try{
         echo buildInfo.name
         echo buildInfo.number
-        def scanConfig = [
+        scanConfig = [
             'buildName'      : buildInfo.name,
             'buildNumber'    : buildInfo.number,
             'failBuild'      : true
         ]
-        def scanResult = server.xrayScan scanConfig
-
-        if (scanResult.isFoundVulnerable()) {
-          error('Stopping early… got Xray issues ')
-        }
+        scanResult = server.xrayScan scanConfig
+      } catch(error) {
+        echo scanResult
+        ls -rlt
+        cat buildInfo.name-buildInfo.number-result.json
+        sh "exit 1"
+      }
+        
         // server.xrayScan scanConfig > test.txt
         // echo scanResult as String
     //   } catch(error) {
