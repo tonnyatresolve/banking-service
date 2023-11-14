@@ -44,7 +44,7 @@ node {
         ]
         scanResult = server.xrayScan scanConfig
       } catch(error) {
-        echo scanResult
+        echo scanResult as String
         // ls -rlt
         // cat buildInfo.name-buildInfo.number-result.json
         sh "exit 1"
