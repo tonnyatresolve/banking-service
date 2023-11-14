@@ -41,7 +41,7 @@ node {
         ]
         def scanResult = server.xrayScan scanConfig
 
-        if (xrayResults.isFoundVulnerable()) {
+        if (scanResult.isFoundVulnerable()) {
           error('Stopping early… got Xray issues ')
         }
         // server.xrayScan scanConfig > test.txt
