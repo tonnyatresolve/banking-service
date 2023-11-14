@@ -40,7 +40,8 @@ node {
             'buildNumber'    : buildInfo.number,
             'failBuild'      : true
         ]
-        def scanResult = server.xrayScan scanConfig
+        // def scanResult = server.xrayScan scanConfig
+        server.xrayScan scanConfig > test.txt
         // echo scanResult as String
       } catch(error) {
         echo buildInfo.name
