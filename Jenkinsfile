@@ -2,8 +2,8 @@ node {
     def server
     def rtMaven
     def buildInfo
-    def scanConfig
-    def scanResult
+    // def scanConfig
+    // def scanResult
 
 
     stage ('Git checkout') {
