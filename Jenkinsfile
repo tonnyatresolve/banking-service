@@ -3,7 +3,7 @@ node {
     def rtMaven
     def buildInfo
     // def scanConfig
-    def scanResult
+    // def scanResult
 
 
     stage ('Git checkout') {
@@ -42,9 +42,9 @@ node {
             'buildNumber'    : buildInfo.number,
             'failBuild'      : true
         ]
-        scanResult = server.xrayScan scanConfig
+        def scanResult = server.xrayScan scanConfig
       } catch(error) {
-        echo scanResult
+        // echo scanResult
         // ls -rlt
         // cat buildInfo.name-buildInfo.number-result.json
         sh "exit 1"
