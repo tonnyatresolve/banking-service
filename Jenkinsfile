@@ -43,7 +43,8 @@ node {
         def scanResult = server.xrayScan scanConfig
         // echo scanResult as String
       } catch(error) {
-        echo scanResult as String 
+        echo buildInfo.name
+        echo buildInfo.number 
         // ls -rlt
         // cat buildInfo.name-buildInfo.number-result.json
         sh "exit 1"
