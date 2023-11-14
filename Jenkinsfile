@@ -41,9 +41,9 @@ node {
         ]
         def scanResult = server.xrayScan scanConfig
         // echo scanResult as String
-        echo scanResult > buildInfo.name-buildInfo.number-result.txt
-        ls -rlt
-        cat buildInfo.name-buildInfo.number-result.txt
+        // echo scanResult > buildInfo.name-buildInfo.number-result.txt
+        // ls -rlt
+        // cat buildInfo.name-buildInfo.number-result.txt
     }
 
     // stage ('Xray artifactory scan') {
