@@ -40,6 +40,7 @@ node {
             'failBuild'      : true
         ]
         def scanResult = server.xrayScan scanConfig
+        echo "test"
         // echo scanResult as String
         // echo scanResult > buildInfo.name-buildInfo.number-result.txt
         // ls -rlt
