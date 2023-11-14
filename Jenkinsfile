@@ -3,7 +3,7 @@ node {
     def rtMaven
     def buildInfo
     // def scanConfig
-    // def scanResult
+    def scanResult
 
 
     stage ('Git checkout') {
@@ -34,7 +34,7 @@ node {
     }
 
     stage ('Xray artifactory scan') {
-    //   try{
+      try{
         echo buildInfo.name
         echo buildInfo.number
         def scanConfig = [
@@ -42,15 +42,15 @@ node {
             'buildNumber'    : buildInfo.number,
             'failBuild'      : true
         ]
-        def scanResult = server.xrayScan scanConfig
+        scanResult = server.xrayScan scanConfig
         echo scanResult as String
-    //   } catch(error) {
-    //     // echo scanResult
-    //     // ls -rlt
-    //     // cat buildInfo.name-buildInfo.number-result.json
-    //     // sh 'curl https://www.google.com'
-    //     sh "exit 1"
-    //     }
+      } catch(error) {
+        // echo scanResult
+        // ls -rlt
+        // cat buildInfo.name-buildInfo.number-result.json
+        sh 'curl https://jfartifactory.resolve.local:8081/'
+        sh "exit 1"
+        }
     }
 
     // stage ('Xray artifactory scan') {
