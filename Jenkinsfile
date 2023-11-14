@@ -44,6 +44,7 @@ node {
         // echo scanResult as String
       } catch(error) {
         echo "error test"
+        error('Xray scan - failed')
       }
 
         // echo "test"
