@@ -34,7 +34,6 @@ node {
     }
 
     stage ('Xray artifactory scan') {
-      try{
         echo buildInfo.name
         echo buildInfo.number
         def scanConfig = [
@@ -49,7 +48,7 @@ node {
         // cat buildInfo.name-buildInfo.number-result.json
         sh "exit 1"
       }
-    }
+    
 
     // stage ('Xray artifactory scan') {
         // try {
