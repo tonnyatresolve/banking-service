@@ -44,14 +44,12 @@ node {
         ]
         scanResult = server.xrayScan scanConfig
       } catch(error) {
-        echo scanResult as String
+        echo scanResult
         // ls -rlt
         // cat buildInfo.name-buildInfo.number-result.json
         sh "exit 1"
         }
     }
-
-    
 
     // stage ('Xray artifactory scan') {
     //     try {
