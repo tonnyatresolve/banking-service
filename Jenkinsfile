@@ -43,11 +43,12 @@ node {
             'failBuild'      : true
         ]
         def scanResult = server.xrayScan scanConfig
+        echo scanResult as String
       } catch(error) {
         // echo scanResult
         // ls -rlt
         // cat buildInfo.name-buildInfo.number-result.json
-        sh 'curl https://www.google.com'
+        // sh 'curl https://www.google.com'
         sh "exit 1"
         }
     }
