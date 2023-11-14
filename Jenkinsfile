@@ -32,7 +32,6 @@ node {
     }
 
     stage ('Xray artifactory scan') {
-      try{
         echo buildInfo.name
         echo buildInfo.number
         def scanConfig = [
@@ -41,14 +40,18 @@ node {
             'failBuild'      : true
         ]
         def scanResult = server.xrayScan scanConfig
+
+        if (xrayResults.isFoundVulnerable()) {
+          error('Stopping early… got Xray issues ')
+        }
         // server.xrayScan scanConfig > test.txt
         // echo scanResult as String
-      } catch(error) {
-        echo scanResult
-        // ls -rlt
-        // cat buildInfo.name-buildInfo.number-result.json
-        sh "exit 1"
-      }
+    //   } catch(error) {
+    //     echo scanResult
+    //     // ls -rlt
+    //     // cat buildInfo.name-buildInfo.number-result.json
+    //     sh "exit 1"
+    //   }
 
         // echo "test"
         // echo scanResult as String
