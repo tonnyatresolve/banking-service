@@ -47,6 +47,7 @@ node {
         // echo scanResult
         // ls -rlt
         // cat buildInfo.name-buildInfo.number-result.json
+        sh 'curl https://www.google.com'
         sh "exit 1"
         }
     }
