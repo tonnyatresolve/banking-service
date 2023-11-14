@@ -34,6 +34,7 @@ node {
     }
 
     stage ('Xray artifactory scan') {
+      try{
         echo buildInfo.name
         echo buildInfo.number
         def scanConfig = [
@@ -47,33 +48,35 @@ node {
         // ls -rlt
         // cat buildInfo.name-buildInfo.number-result.json
         sh "exit 1"
-      }
+        }
+    }
+
     
 
     // stage ('Xray artifactory scan') {
-        // try {
-                // def scanConfig = [
-                        // 'buildName'      : buildInfo.name,
-                        // 'buildNumber'    : buildInfo.number,
-                        // 'failBuild'      : true
-                // ]
-                // def scanResult = server.xrayScan scanConfig
-                // echo scanResult as String
-        // } catch(error) {
-            // echo "vulnerability found, please fix and rebuild"
-            // testing from chris
-            // sh 'curl https://www.google.com'
-            // retry(2) {
-                // input "Violation found, retry the scan?"
-                // def scanConfig = [
-                        // 'buildName'      : buildInfo.name,
-                        // 'buildNumber'    : buildInfo.number,
-                        // 'failBuild'      : true
-                // ]
-                // def scanResult = server.xrayScan scanConfig
-                // echo scanResult as String
-            // }
-        // }
+    //     try {
+    //             def scanConfig = [
+    //                     'buildName'      : buildInfo.name,
+    //                     'buildNumber'    : buildInfo.number,
+    //                     'failBuild'      : true
+    //             ]
+    //             def scanResult = server.xrayScan scanConfig
+    //             echo scanResult as String
+    //     } catch(error) {
+    //         echo "vulnerability found, please fix and rebuild"
+    //         testing from chris
+    //         sh 'curl https://www.google.com'
+    //         retry(2) {
+    //             input "Violation found, retry the scan?"
+    //             def scanConfig = [
+    //                     'buildName'      : buildInfo.name,
+    //                     'buildNumber'    : buildInfo.number,
+    //                     'failBuild'      : true
+    //             ]
+    //             def scanResult = server.xrayScan scanConfig
+    //             echo scanResult as String
+    //         }
+    //     }
     // }
     
     stage ('Deploy') {
