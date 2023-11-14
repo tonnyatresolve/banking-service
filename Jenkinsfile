@@ -37,12 +37,12 @@ node {
       try{
         echo buildInfo.name
         echo buildInfo.number
-        scanConfig = [
+        def scanConfig = [
             'buildName'      : buildInfo.name,
             'buildNumber'    : buildInfo.number,
             'failBuild'      : true
         ]
-        scanResult = server.xrayScan scanConfig
+        def scanResult = server.xrayScan scanConfig
       } catch(error) {
         echo scanResult as String
         // ls -rlt
