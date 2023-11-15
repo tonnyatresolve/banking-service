@@ -34,18 +34,16 @@ node {
     }
 
     stage ('Xray artifactory scan') {
-      script {
-        echo buildInfo.name
-        echo buildInfo.number
-        scanConfig = [
-          'buildName'      : buildInfo.name,
-          'buildNumber'    : buildInfo.number,
-          'failBuild'      : true,
-          'printTable'     : true
-        ]
-        scanResult = server.xrayScan scanConfig
-        echo scanResult as String
-      }
+      echo buildInfo.name
+      echo buildInfo.number
+      scanConfig = [
+        'buildName'      : buildInfo.name,
+        'buildNumber'    : buildInfo.number,
+        'failBuild'      : true,
+        'printTable'     : true
+      ]
+      scanResult = server.xrayScan scanConfig
+      echo scanResult as String
     //   } catch(error) {
     //     sh 'ls -lrt'
     //     sh 'cat scan-result.txt'
