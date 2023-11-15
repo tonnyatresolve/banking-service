@@ -36,7 +36,7 @@ node {
     stage ('Xray artifactory scan') {
       def scanConfig
       def scanResult
-      try{
+    //   try{
         echo buildInfo.name
         echo buildInfo.number
         scanConfig = [
@@ -46,13 +46,13 @@ node {
         ]
         scanResult = server.xrayScan scanConfig
         // echo scanResult as String
-      } catch(error) {
-        echo scanResult as String
-        // ls -rlt
-        // cat buildInfo.name-buildInfo.number-result.json
-        // sh 'curl https://jfartifactory.resolve.local:8081/'
-        sh "exit 1"
-        }
+    //   } catch(error) {
+    //     echo scanResult as String
+    //     // ls -rlt
+    //     // cat buildInfo.name-buildInfo.number-result.json
+    //     // sh 'curl https://jfartifactory.resolve.local:8081/'
+    //     sh "exit 1"
+    //     }
     }
 
     // stage ('Xray artifactory scan') {
