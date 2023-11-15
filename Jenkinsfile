@@ -48,7 +48,7 @@ node {
       scanResult = server.xrayScan(scanConfig)
       
       } catch(error) {
-        echo scanResult as String
+        echo scanResult
         //   echo buildInfo.number
         //   echo buildInfo.name
 
