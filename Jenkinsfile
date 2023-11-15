@@ -34,9 +34,6 @@ node {
     }
 
     stage ('Xray artifactory scan') {
-    //   def scanConfig
-    //   def scanResult
-    //   try{
       script {
         echo buildInfo.name
         echo buildInfo.number
