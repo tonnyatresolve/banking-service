@@ -40,7 +40,7 @@ node {
         def scanConfig = [
           'buildName'      : buildInfo.name,
           'buildNumber'    : buildInfo.number,
-          'failBuild'      : true
+          'failBuild'      : true,
           'printTable'     : true
         ]
         def scanResult = server.xrayScan scanConfig
