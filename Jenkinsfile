@@ -43,7 +43,7 @@ node {
         'failBuild'      : true,
         'printTable'     : true
       ]
-      def scanResult = server.xrayScan scanConfig
+      def scanResult = server.xrayScan(scanConfig)
       echo scanResult as String
     //   } catch(error) {
           
