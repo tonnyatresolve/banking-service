@@ -46,6 +46,8 @@ node {
       } catch(error) {
           echo buildInfo.name
           echo buildInfo.number
+
+          sh "exit 1"
         }
     }
 
