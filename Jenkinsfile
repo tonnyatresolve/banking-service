@@ -48,8 +48,8 @@ node {
       server.xrayScan(scanConfig) > scan-result.txt
       
       } catch(error) {
-        ls -lrt
-        cat scan-result.txt
+        sh 'ls -lrt'
+        sh 'cat scan-result.txt'
         echo "scanResult"
         //   echo buildInfo.number
         //   echo buildInfo.name
