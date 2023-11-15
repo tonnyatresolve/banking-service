@@ -45,17 +45,11 @@ node {
           'failBuild'      : true
         ]
         scanResult = server.xrayScan scanConfig
-        echo scanResult as String
       } catch(error) {
-          vulnerability.found = "TRUE"
+          echo scanResult as String
         }
     }
 
-    if (vulnerability.found == "TRUE") {
-        stage("Post Scan") {
-            echo "Post Scan"
-        }
-    }
     // stage ('Xray artifactory scan') {
     //     try {
     //             def scanConfig = [
