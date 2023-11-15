@@ -44,11 +44,11 @@ node {
         ]
         def scanResult = server.xrayScan scanConfig
       } catch(error) {
-          echo buildInfo.name
+          
           echo buildInfo.number
 
-          BUILD-NAME= 'sh 'sed -i 's| |%20|g' buildInfo.name''
-          echo BUILD-NAME
+          BUILD-NAME="echo buildInfo.name|sed -i 's| |%20|g'"
+          echo ${BUILD-NAME}
 
           sh "exit 1"
         }
