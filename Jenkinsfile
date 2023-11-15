@@ -47,6 +47,9 @@ node {
           echo buildInfo.name
           echo buildInfo.number
 
+          BUILD-NAME= `sh "sed -i 's| |%20|g' buildInfo.name"`
+          echo BUILD-NAME
+
           sh "exit 1"
         }
     }
