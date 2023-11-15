@@ -46,6 +46,7 @@ node {
       } catch(error) {
           
           echo buildInfo.number
+          echo buildInfo.name
 
           buildName="echo buildInfo.name|sed -i 's| |%20|g'"
           echo buildName
