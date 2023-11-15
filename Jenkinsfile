@@ -45,10 +45,10 @@ node {
         'failBuild'      : true,
         'printTable'     : true
       ]
-      scanResult = server.xrayScan(scanConfig)
+      server.xrayScan(scanConfig)
       
       } catch(error) {
-        echo scanResult
+        echo "scanResult"
         //   echo buildInfo.number
         //   echo buildInfo.name
 
