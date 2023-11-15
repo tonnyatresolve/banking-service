@@ -48,8 +48,8 @@ node {
           echo buildInfo.number
           echo buildInfo.name
 
-          buildName="echo buildInfo.name|sed -i 's| |%20|g'"
-          echo $buildName
+          def buildName="echo buildInfo.name|sed -i 's| |%20|g'"
+          echo buildName
 
           sh "exit 1"
         }
