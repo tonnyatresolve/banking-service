@@ -49,7 +49,7 @@ node {
           echo buildInfo.name
 
           buildName="echo buildInfo.name|sed -i 's| |%20|g'"
-          echo buildName
+          echo $buildName
 
           sh "exit 1"
         }
