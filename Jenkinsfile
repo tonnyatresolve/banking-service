@@ -37,20 +37,22 @@ node {
       def scanConfig
       def scanResult
       try{
-      echo buildInfo.name
-      echo buildInfo.number
-      scanConfig = [
-        'buildName'      : buildInfo.name,
-        'buildNumber'    : buildInfo.number,
-        'failBuild'      : true,
-        'printTable'     : true
-      ]
-      server.xrayScan(scanConfig) > scan-result.txt
-      
+        script {
+          echo buildInfo.name
+          echo buildInfo.number
+          scanConfig = [
+            'buildName'      : buildInfo.name,
+            'buildNumber'    : buildInfo.number,
+            'failBuild'      : true,
+            'printTable'     : true
+          ]
+          scanResult = server.xrayScan scanConfig
+          echo scanResult as String
+        }
       } catch(error) {
         sh 'ls -lrt'
         sh 'cat scan-result.txt'
-        echo "scanResult"
+        echo scanResult as String
         //   echo buildInfo.number
         //   echo buildInfo.name
 
