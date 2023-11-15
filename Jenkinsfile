@@ -34,25 +34,27 @@ node {
     }
 
     stage ('Xray artifactory scan') {
-      try{
+    //   try{
         echo buildInfo.name
         echo buildInfo.number
         def scanConfig = [
           'buildName'      : buildInfo.name,
           'buildNumber'    : buildInfo.number,
           'failBuild'      : true
+          'printTable'     : true
         ]
         def scanResult = server.xrayScan scanConfig
-      } catch(error) {
+        echo scanResult as String
+    //   } catch(error) {
           
-          echo buildInfo.number
-          echo buildInfo.name
+    //     //   echo buildInfo.number
+    //     //   echo buildInfo.name
 
-          def buildName="echo buildInfo.name|sed -i 's| |%20|g'"
-          echo buildName
+    //     //   def buildName=`echo buildInfo.name|sed -i 's| |%20|g'
+    //     //   echo buildName
 
-          sh "exit 1"
-        }
+    //       sh "exit 1"
+    //     }
     }
 
     // stage ('Xray artifactory scan') {
