@@ -53,7 +53,7 @@ node {
         ]
         scanResult = server.xrayScan scanConfig
         echo "yyyyy"
-        echo scanResult
+        echo scanResult as String
     //   String json = echo scanResult as String
       // new File("result.json").write(scanResult)
 
