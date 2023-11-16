@@ -59,7 +59,7 @@ node {
 
       } catch(error) {
         // echo "xxxxx"
-        // echo scanConfig
+        // echo scanConfig as String
         // echo "yyyyy"
         // echo scanResult
 
