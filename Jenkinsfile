@@ -34,33 +34,36 @@ node {
     }
 
     stage ('Xray artifactory scan') {
-      echo buildInfo.name
-      echo buildInfo.number
-      def buildName = java.net.URLEncoder.encode(buildInfo.name, "UTF-8").replace("+", "%20").replace("%3A", ":");
-      echo buildName
+      try{
+        echo buildInfo.name
+        echo buildInfo.number
+        def buildName = java.net.URLEncoder.encode(buildInfo.name, "UTF-8").replace("+", "%20").replace("%3A", ":");
+        echo buildName
+        def buildNumber = buildInfo.number
 
-      def scanConfig = [
-        'buildName'      : buildInfo.name,
-        'buildNumber'    : buildInfo.number,
-        'failBuild'      : false,
-        'printTable'     : true
-      ]
-      def scanResult = server.xrayScan scanConfig 
+        def scanConfig = [
+          'buildName'      : buildInfo.name,
+          'buildNumber'    : buildInfo.number,
+          'failBuild'      : true,
+          'printTable'     : true
+        ]
+        def scanResult = server.xrayScan scanConfig 
     //   String json = echo scanResult as String
       // new File("result.json").write(scanResult)
 
-    //   } catch(error) {
-    //     sh 'ls -lrt'
-    //     sh 'cat scan-result.txt'
-    //     echo scanResult as String
-    //     //   echo buildInfo.number
-    //     //   echo buildInfo.name
+      } catch(error) {
+        sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/{buildName}/{buildNumber}[?include_vulnerabilities=true]"'
+        // sh 'ls -lrt'
+        // sh 'cat scan-result.txt'
+        // echo scanResult as String
+        //   echo buildInfo.number
+        //   echo buildInfo.name
 
-    //     //   def buildName=`echo buildInfo.name|sed -i 's| |%20|g'
-    //     //   echo buildName
+        //   def buildName=`echo buildInfo.name|sed -i 's| |%20|g'
+        //   echo buildName
 
-    //       sh "exit 1"
-    //     }
+          sh "exit 1"
+        }
     }
 
     stage ('Xray artifactory scan2') {
