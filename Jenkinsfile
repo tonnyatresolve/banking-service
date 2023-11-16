@@ -57,7 +57,9 @@ node {
 
       } catch(error) {
         echo "xxxxx"
-        echo scanResult as String
+        echo scanConfig
+        echo "yyyyy"
+        echo scanResult
         //sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/(buildName)/(buildNumber)[?include_vulnerabilities=true]"'
         // sh 'ls -lrt'
         // sh 'cat scan-result.txt'
