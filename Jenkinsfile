@@ -43,7 +43,6 @@ node {
         'printTable'     : true
       ]
       def scanResult = server.xrayScan scanConfig
-      echo scanResult as String
     //   } catch(error) {
     //     sh 'ls -lrt'
     //     sh 'cat scan-result.txt'
@@ -56,6 +55,10 @@ node {
 
     //       sh "exit 1"
     //     }
+    }
+
+    stage ('Xray artifactory scan2') {
+      echo scanResult as String
     }
 
     // stage ('Xray artifactory scan') {
