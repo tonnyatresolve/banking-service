@@ -37,7 +37,8 @@ node {
       def buildName = java.net.URLEncoder.encode(buildInfo.name, "UTF-8").replace("+", "%20").replace("%3A", ":");
       echo buildName
       def buildNumber = buildInfo.number
-      
+      echo buildNumber
+
       try{
         echo buildInfo.name
         echo buildInfo.number
@@ -53,7 +54,7 @@ node {
       // new File("result.json").write(scanResult)
 
       } catch(error) {
-        sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/{buildName}/{buildNumber}[?include_vulnerabilities=true]"'
+        sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/${buildName}/${buildNumber}[?include_vulnerabilities=true]"'
         // sh 'ls -lrt'
         // sh 'cat scan-result.txt'
         // echo scanResult as String
