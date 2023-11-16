@@ -38,23 +38,27 @@ node {
       echo buildName
       def buildNumber = buildInfo.number
       echo buildNumber
+      def scanConfig
+      def scanResult
 
       try{
         echo buildInfo.name
         echo buildInfo.number
 
-        def scanConfig = [
+        scanConfig = [
           'buildName'      : buildInfo.name,
           'buildNumber'    : buildInfo.number,
           'failBuild'      : true,
           'printTable'     : true
         ]
-        def scanResult = server.xrayScan scanConfig 
+        scanResult = server.xrayScan scanConfig 
     //   String json = echo scanResult as String
       // new File("result.json").write(scanResult)
 
       } catch(error) {
-        sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/(buildName)/(buildNumber)[?include_vulnerabilities=true]"'
+        echo "xxxxx"
+        echo scanResult as String
+        //sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/(buildName)/(buildNumber)[?include_vulnerabilities=true]"'
         // sh 'ls -lrt'
         // sh 'cat scan-result.txt'
         // echo scanResult as String
