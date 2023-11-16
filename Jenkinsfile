@@ -54,7 +54,7 @@ node {
       // new File("result.json").write(scanResult)
 
       } catch(error) {
-        sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/${buildName}/${buildNumber}[?include_vulnerabilities=true]"'
+        sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/(buildName)/(buildNumber)[?include_vulnerabilities=true]"'
         // sh 'ls -lrt'
         // sh 'cat scan-result.txt'
         // echo scanResult as String
