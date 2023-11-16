@@ -36,6 +36,9 @@ node {
     stage ('Xray artifactory scan') {
       echo buildInfo.name
       echo buildInfo.number
+      def buildName = java.net.URLEncoder.encode(buildInfo.name, "UTF-8")
+      echo buildName
+
       def scanConfig = [
         'buildName'      : buildInfo.name,
         'buildNumber'    : buildInfo.number,
