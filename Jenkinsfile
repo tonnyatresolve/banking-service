@@ -42,9 +42,9 @@ node {
         'failBuild'      : false,
         'printTable'     : true
       ]
-    //   def scanResult = server.xrayScan scanConfig 
+      def scanResult = server.xrayScan scanConfig 
     //   String json = echo scanResult as String
-      new File("result.json") << server.xrayScan scanConfig
+      new File("result.json").write(scanResult)
 
     //   } catch(error) {
     //     sh 'ls -lrt'
