@@ -36,7 +36,7 @@ node {
     stage ('Xray artifactory scan') {
       echo buildInfo.name
       echo buildInfo.number
-      def buildName = println(buildInfo.name).replace(" ", "%20")
+      def buildName = UrlEscapers.urlFragmentEscaper().escape(buildInfo.name)
       echo buildName
 
       def scanConfig = [
