@@ -36,7 +36,7 @@ node {
     stage ('Xray artifactory scan') {
       echo buildInfo.name
       echo buildInfo.number
-      def buildName = java.net.URLEncoder.encode(buildInfo.name, "UTF-8");
+      def buildName = java.net.URLEncoder.encode(buildInfo.name, "UTF-8").replace("+", "%20").replace("%3A", ":");
       echo buildName
 
       def scanConfig = [
@@ -47,7 +47,7 @@ node {
       ]
       def scanResult = server.xrayScan scanConfig 
     //   String json = echo scanResult as String
-      new File("result.json").write(scanResult)
+      // new File("result.json").write(scanResult)
 
     //   } catch(error) {
     //     sh 'ls -lrt'
