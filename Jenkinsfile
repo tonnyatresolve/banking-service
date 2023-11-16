@@ -38,8 +38,8 @@ node {
       echo buildName
       def buildNumber = buildInfo.number
       echo buildNumber
-      def scanConfig = []
-      def scanResult = []
+      scanConfig = []
+      scanResult = []
 
       try{
         echo buildInfo.name
