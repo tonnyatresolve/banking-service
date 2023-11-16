@@ -42,8 +42,8 @@ node {
         'failBuild'      : true,
         'printTable'     : true
       ]
-      def scanResult = server.xrayScan scanConfig
-    //   echo scanResult >> /tmp/result.json
+      def scanResult = server.xrayScan scanConfig 
+      String result.json = echo scanResult as String
 
     //   } catch(error) {
     //     sh 'ls -lrt'
