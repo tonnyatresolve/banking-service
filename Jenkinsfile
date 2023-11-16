@@ -39,10 +39,12 @@ node {
       def scanConfig = [
         'buildName'      : buildInfo.name,
         'buildNumber'    : buildInfo.number,
-        'failBuild'      : false,
+        'failBuild'      : true,
         'printTable'     : true
       ]
       def scanResult = server.xrayScan scanConfig
+      echo scanResult as String >> result.json
+
     //   } catch(error) {
     //     sh 'ls -lrt'
     //     sh 'cat scan-result.txt'
@@ -57,9 +59,9 @@ node {
     //     }
     }
 
-    stage ('Xray artifactory scan2') {
-      echo scanResult as String
-    }
+    // stage ('Xray artifactory scan2') {
+    //   echo scanResult as String
+    // }
 
     // stage ('Xray artifactory scan') {
     //     try {
