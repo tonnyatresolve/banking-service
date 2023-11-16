@@ -51,7 +51,7 @@ node {
           'failBuild'      : true,
           'printTable'     : true
         ]
-        scanResult = server.xrayScan scanConfig
+        scanResult = server.xrayScan(scanConfig)
         echo "zzzzz"
         echo scanResult as String
     //   String json = echo scanResult as String
