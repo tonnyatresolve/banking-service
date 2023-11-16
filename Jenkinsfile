@@ -38,8 +38,8 @@ node {
       echo buildName
       def buildNumber = buildInfo.number
       echo buildNumber
-      def scanConfig
-      def scanResult
+      def scanConfig = []
+      def scanResult = []
 
       try{
         echo buildInfo.name
@@ -61,7 +61,7 @@ node {
         // echo "xxxxx"
         // echo scanConfig as String
         // echo "yyyyy"
-        // echo scanResult
+        // echo scanResult as String
 
 
 
