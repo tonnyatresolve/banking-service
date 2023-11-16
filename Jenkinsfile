@@ -51,15 +51,20 @@ node {
           'failBuild'      : true,
           'printTable'     : true
         ]
-        scanResult = server.xrayScan scanConfig 
+        scanResult = server.xrayScan scanConfig
+        echo "yyyyy"
+        echo scanResult
     //   String json = echo scanResult as String
       // new File("result.json").write(scanResult)
 
       } catch(error) {
-        echo "xxxxx"
-        echo scanConfig
-        echo "yyyyy"
-        echo scanResult
+        // echo "xxxxx"
+        // echo scanConfig
+        // echo "yyyyy"
+        // echo scanResult
+
+
+
         //sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/(buildName)/(buildNumber)[?include_vulnerabilities=true]"'
         // sh 'ls -lrt'
         // sh 'cat scan-result.txt'
