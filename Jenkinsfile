@@ -51,7 +51,7 @@ node {
           'failBuild'      : true,
           'printTable'     : true
         ]
-        scanResult = server.xrayScan(scanConfig)
+        scanResult = server.xrayScan scanConfig
         echo "zzzzz"
         echo scanResult as String
     //   String json = echo scanResult as String
@@ -63,7 +63,7 @@ node {
         echo "yyyyy"
         echo scanResult as String
         echo "wwwww"
-        echo currentBuild.rawBuild.getLog(100)
+        echo error
 
 
 
