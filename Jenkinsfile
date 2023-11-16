@@ -52,16 +52,16 @@ node {
           'printTable'     : true
         ]
         scanResult = server.xrayScan scanConfig
-        echo "yyyyy"
+        echo "zzzzz"
         echo scanResult as String
     //   String json = echo scanResult as String
       // new File("result.json").write(scanResult)
 
       } catch(error) {
-        // echo "xxxxx"
-        // echo scanConfig as String
-        // echo "yyyyy"
-        // echo scanResult as String
+        echo "xxxxx"
+        echo scanConfig as String
+        echo "yyyyy"
+        echo scanResult as String
 
 
 
