@@ -43,7 +43,7 @@ node {
         'printTable'     : true
       ]
       def scanResult = server.xrayScan scanConfig
-      echo scanResult as String >> result.json
+      echo scanResult >> result.json
 
     //   } catch(error) {
     //     sh 'ls -lrt'
