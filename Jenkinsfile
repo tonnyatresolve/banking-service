@@ -62,6 +62,8 @@ node {
         echo scanConfig as String
         echo "yyyyy"
         echo scanResult as String
+        echo "wwwww"
+        echo currentBuild.rawBuild.getLog(100)
 
 
 
