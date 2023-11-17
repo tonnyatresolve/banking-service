@@ -54,11 +54,9 @@ node {
         def scanResult = server.xrayScan scanConfig
         echo "zzzzz"
 
-        env.result = echo scanResult as String
+        def result = scanResult.toString()
 
-        sh "echo ${result}"
-
-        // writeFile(file: 'result.log', text: result, encoding: "UTF-8")
+        writeFile(file: 'result.log', text: result, encoding: "UTF-8")
 
         sh 'ls -rlt'
 
