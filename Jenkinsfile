@@ -54,6 +54,10 @@ node {
         scanResult = server.xrayScan scanConfig
         echo "zzzzz"
         echo scanResult as String
+
+        if (scanResult.isFoundVulnerable()){
+          sh "exit 1"
+        }
     //   String json = echo scanResult as String
       // new File("result.json").write(scanResult)
 
