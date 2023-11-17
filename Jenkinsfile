@@ -64,11 +64,13 @@ node {
         echo scanResult as String
         echo "wwwww"
         echo error as String
-        echo buildName as String
-        // def resultFile = new File(buildName-buildNumber.json)
-        writeFile(file: 'buildName.txt', text: error)
+        echo error as String | Out-File error.log -Append
         sh 'ls -rlt'
-        
+
+        // echo buildName as String
+        // // def resultFile = new File(buildName-buildNumber.json)
+        // writeFile(file: 'buildName.txt', text: error)
+        // sh 'ls -rlt'        
 
         //sh 'echo "https://jfartifactory.resolve.local:8081/api/v2/ci/build/(buildName)/(buildNumber)[?include_vulnerabilities=true]"'
         // sh 'ls -lrt'
