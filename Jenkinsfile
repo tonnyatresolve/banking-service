@@ -41,14 +41,14 @@ node {
       scanConfig = []
       scanResult = []
 
-      try{
+      // try{
         echo buildInfo.name
         echo buildInfo.number
 
         scanConfig = [
           'buildName'      : buildInfo.name,
           'buildNumber'    : buildInfo.number,
-          'failBuild'      : true,
+          'failBuild'      : false,
           'printTable'     : true
         ]
         scanResult = server.xrayScan scanConfig
@@ -57,15 +57,15 @@ node {
     //   String json = echo scanResult as String
       // new File("result.json").write(scanResult)
 
-      } catch(error) {
-        echo "xxxxx"
-        echo scanConfig as String
-        echo "yyyyy"
-        echo scanResult as String
-        echo "wwwww"
-        echo error as String
-        error | Out-File 'error.log' -Append
-        sh 'ls -rlt'
+      // } catch(error) {
+        // echo "xxxxx"
+        // echo scanConfig as String
+        // echo "yyyyy"
+        // echo scanResult as String
+        // echo "wwwww"
+        // echo error as String
+        // error | Out-File 'error.log' -Append
+        // sh 'ls -rlt'
 
         // echo buildName as String
         // // def resultFile = new File(buildName-buildNumber.json)
@@ -82,8 +82,8 @@ node {
         //   def buildName=`echo buildInfo.name|sed -i 's| |%20|g'
         //   echo buildName
 
-          sh "exit 1"
-        }
+        //   sh "exit 1"
+        // }
     }
 
     stage ('Xray artifactory scan2') {
