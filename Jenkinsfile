@@ -55,8 +55,8 @@ node {
         echo "zzzzz"
 
         def result = scanResult.toString()
-
-        writeFile(file: buildName-buildNumber, text: result, encoding: "UTF-8")
+        def logFile = buildName-buildNumber.log
+        writeFile(file: logFile, text: result, encoding: "UTF-8")
 
         sh 'ls -rlt'
 
