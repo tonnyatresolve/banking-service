@@ -53,9 +53,8 @@ node {
         ]
         def scanResult = server.xrayScan scanConfig
         echo "zzzzz"
-        def result = echo scanResult as String
 
-        writeFile(file: 'result.log', text: "test input")
+        writeJFON(file: 'result.json', text: scanResult)
 
         sh 'ls -rlt'
 
