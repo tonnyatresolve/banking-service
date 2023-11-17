@@ -64,7 +64,7 @@ node {
         echo scanResult as String
         echo "wwwww"
         echo error as String
-        echo error as String | Out-File error.log -Append
+        error | Out-File error.log -Append
         sh 'ls -rlt'
 
         // echo buildName as String
