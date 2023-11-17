@@ -39,7 +39,7 @@ node {
       def buildNumber = buildInfo.number
       echo buildNumber
       scanConfig = []
-      scanResult = []
+      // scanResult = []
 
       // try{
         echo buildInfo.name
@@ -51,12 +51,12 @@ node {
           'failBuild'      : false,
           'printTable'     : true
         ]
-        scanResult = server.xrayScan scanConfig
+        def scanResult = server.xrayScan scanConfig
         echo "zzzzz"
         echo scanResult as String
 
         if (scanResult.isFoundVulnerable()){
-          sh "exit 1"
+          error('Stopping early… got Xray issues ')
         }
     //   String json = echo scanResult as String
       // new File("result.json").write(scanResult)
