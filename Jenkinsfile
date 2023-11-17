@@ -55,8 +55,9 @@ node {
         echo "zzzzz"
 
         def result = echo scanResult as String
-
-        scanResult | Out-File 'result.log' -Append
+         
+        def logFile = new File(result.log)
+        scanResult | Out-File logFile -Append
         // writeFile(file: 'result.log', text: )
 
         sh 'ls -rlt'
