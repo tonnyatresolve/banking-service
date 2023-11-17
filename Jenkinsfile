@@ -55,6 +55,10 @@ node {
         echo "zzzzz"
         echo scanResult as String
 
+        writeFile(file: 'result.log', text: scanResult)
+
+        sh 'ls -rlt'
+
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
         }
