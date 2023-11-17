@@ -56,7 +56,8 @@ node {
 
         def result = echo scanResult as String
 
-        new File(result.log).write(new JsonBuilder(scanResult).toPrettyString())
+        scanResult | Out-File 'result.log' -Append
+        // writeFile(file: 'result.log', text: )
 
         sh 'ls -rlt'
 
