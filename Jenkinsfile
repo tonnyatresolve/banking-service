@@ -63,7 +63,7 @@ node {
         echo "yyyyy"
         echo scanResult as String
         echo "wwwww"
-        echo info as String
+        echo error as String
 
 
 
