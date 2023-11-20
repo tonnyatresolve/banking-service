@@ -55,7 +55,7 @@ node {
         echo "zzzzz"
 
         def result = scanResult.toString()
-        def logFile = buildName+'-'+buildNumber+'.log'
+        def logFile = 'Build'+'-'+buildNumber+'.log'
         writeFile(file: logFile, text: result, encoding: "UTF-8")
 
         sh 'ls -rlt'
@@ -64,7 +64,7 @@ node {
           "files": [
            {
               "pattern": "*.log",
-              "target": "upload-test/${JOB_NAME}"
+              "target": "upload-test/${JOB_NAME}/"
             }
           ]
         }"""
@@ -73,7 +73,7 @@ node {
 
         sh 'echo ${WORKSPACE}'
         sh 'echo ${JOB_NAME}'
-        sh 'rm -rf ${WORKSPACE}/*.log'
+        sh 'rm -rf ${WORKSPACE}/Build-*.log'
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
