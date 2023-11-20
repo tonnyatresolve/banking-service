@@ -60,9 +60,16 @@ node {
 
         sh 'ls -rlt'
 
-        if (fileExist(logFile)) {
-          new File(logFile).delete()
-        }
+        def uploadSpec = """{
+          "files": [
+           {
+              "pattern": "*.log",
+              "target": "upload-test/"
+            }
+          ]
+        }"""
+
+        server.upload spec: uploadSpec, failNoOp: true
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
