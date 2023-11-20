@@ -64,7 +64,7 @@ node {
           "files": [
            {
               "pattern": "*.log",
-              "target": "upload-test/${WORKSPACE}"
+              "target": "upload-test/${JOB_NAME}"
             }
           ]
         }"""
