@@ -63,7 +63,7 @@ node {
         def uploadSpec = """{
           "files": [
            {
-              "pattern": "*.log",
+              "pattern": "xdo%20::%20sample%20::%20banking-service2*.log",
               "target": "upload-test/"
             }
           ]
@@ -71,9 +71,8 @@ node {
 
         server.upload spec: uploadSpec, failNoOp: true
 
-        if (fileExists('xdo%20::%20sample%20::%20banking-service2*.log')) {
-          new File('xdo%20::%20sample%20::%20banking-service2*.log').delete()
-        }
+        sh 'echo ${env.WORKSPACE}'
+        sh 'ls -lrt ${env.WORKSPACE}'
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
