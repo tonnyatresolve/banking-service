@@ -60,7 +60,7 @@ node {
 
         sh 'ls -rlt'
 
-        new File(logFile).delete()
+        File(logFile).delete()
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
