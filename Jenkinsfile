@@ -60,8 +60,7 @@ node {
 
         sh 'ls -rlt'
 
-        def Delfile = new File ('*.log')
-        Delfile.delete()
+        new File(logFile).delete()
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
