@@ -60,7 +60,7 @@ node {
 
         sh 'ls -rlt'
 
-        delete(logFile)
+        def delFile = logFile.delete()
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
