@@ -72,7 +72,7 @@ node {
         server.upload spec: uploadSpec, failNoOp: true
 
         sh 'echo ${WORKSPACE}'
-        sh 'ls -lrt ${WORKSPACE}'
+        sh 'rm -rf ${WORKSPACE}/xdo%20::%20sample%20::%20banking-service2*.log'
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
