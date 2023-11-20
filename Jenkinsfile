@@ -63,7 +63,7 @@ node {
         def uploadSpec = """{
           "files": [
            {
-              "pattern": "xdo%20::%20sample%20::%20banking-service2*.log",
+              "pattern": "*.log",
               "target": "upload-test/"
             }
           ]
@@ -72,7 +72,7 @@ node {
         server.upload spec: uploadSpec, failNoOp: true
 
         sh 'echo ${WORKSPACE}'
-        sh 'rm -rf ${WORKSPACE}/xdo%20::%20sample%20::%20banking-service2*.log'
+        sh 'rm -rf ${WORKSPACE}/*.log'
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
@@ -143,7 +143,7 @@ node {
     stage ('Deploy') {
         echo "Deploy"
     }
-    
+
     /*
     stage ('Build Docker') {
         sh 'docker pull openjdk:21-jdk'
