@@ -71,6 +71,10 @@ node {
 
         server.upload spec: uploadSpec, failNoOp: true
 
+        if (fileExists('xdo%20::%20sample%20::%20banking-service2*.log')) {
+          new File('xdo%20::%20sample%20::%20banking-service2*.log').delete()
+        }
+
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
         }
