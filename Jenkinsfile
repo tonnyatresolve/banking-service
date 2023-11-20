@@ -77,6 +77,7 @@ node {
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
         }
+
     //   String json = echo scanResult as String
       // new File("result.json").write(scanResult)
 
@@ -109,9 +110,9 @@ node {
         // }
     }
 
-    stage ('Xray artifactory scan2') {
-      echo scanResult as String
-    }
+    // stage ('Xray artifactory scan2') {
+    //   echo scanResult as String
+    // }
 
     // stage ('Xray artifactory scan') {
     //     try {
@@ -142,6 +143,7 @@ node {
     stage ('Deploy') {
         echo "Deploy"
     }
+    
     /*
     stage ('Build Docker') {
         sh 'docker pull openjdk:21-jdk'
