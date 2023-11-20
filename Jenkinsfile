@@ -71,8 +71,8 @@ node {
 
         server.upload spec: uploadSpec, failNoOp: true
 
-        sh 'echo ${env.WORKSPACE}'
-        sh 'ls -lrt ${env.WORKSPACE}'
+        sh 'echo ${WORKSPACE}'
+        sh 'ls -lrt ${WORKSPACE}'
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
