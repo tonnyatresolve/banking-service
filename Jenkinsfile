@@ -64,7 +64,7 @@ node {
           "files": [
            {
               "pattern": "*.log",
-              "target": "upload-test/"
+              "target": "upload-test/${WORKSPACE}"
             }
           ]
         }"""
@@ -72,6 +72,7 @@ node {
         server.upload spec: uploadSpec, failNoOp: true
 
         sh 'echo ${WORKSPACE}'
+        sh 'echo ${JOB_NAME}'
         sh 'rm -rf ${WORKSPACE}/*.log'
 
         if (scanResult.isFoundVulnerable()){
