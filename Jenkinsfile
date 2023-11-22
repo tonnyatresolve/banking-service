@@ -44,7 +44,7 @@ node {
       // try{
         echo buildInfo.name
         echo buildInfo.number
-        echo buildInfo
+
 
         scanConfig = [
           'buildName'      : buildInfo.name,
@@ -60,6 +60,7 @@ node {
         writeFile(file: logFile, text: result, encoding: "UTF-8")
 
         sh 'ls -rlt'
+        sh 'echo ${res_buildInfo_targetRepo}'
 
         def uploadSpec = """{
           "files": [
