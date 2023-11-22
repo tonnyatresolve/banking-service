@@ -44,6 +44,7 @@ node {
       // try{
         echo buildInfo.name
         echo buildInfo.number
+        echo buildInfo
 
         scanConfig = [
           'buildName'      : buildInfo.name,
