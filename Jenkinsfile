@@ -62,6 +62,8 @@ node {
         sh 'ls -rlt'
         sh 'echo ${res_buildInfo_targetRepo}'
 
+        sh 'curl --user admin:P@ssw0rd https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/banking-service2-watch|jq'
+
         def uploadSpec = """{
           "files": [
            {
