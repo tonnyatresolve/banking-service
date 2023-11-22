@@ -56,13 +56,13 @@ node {
         echo "zzzzz"
 
         def result = scanResult.toString()
-        def logFile = 'Build'+'-'+buildNumber+'.log'
+        def logFile = 'ScanResult'+'-'+buildNumber+'.log'
         writeFile(file: logFile, text: result, encoding: "UTF-8")
 
         sh 'ls -rlt'
         sh 'echo ${res_buildInfo_targetRepo}'
 
-        sh 'curl --user admin:P@ssw0rd https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/banking-service2-watch|jq'
+        sh 'curl --user admin:P@ssw0rd https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/banking-service2-watch|jq >> IgnoredViolation-${BUILD_NUMBER}.log'
 
         def uploadSpec = """{
           "files": [
