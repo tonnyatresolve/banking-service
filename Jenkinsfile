@@ -59,7 +59,7 @@ node {
         def logFile = 'ScanResult'+'-'+buildNumber+'.log'
         writeFile(file: logFile, text: result, encoding: "UTF-8")
 
-        sh 'curl --user admin:P@ssw0rd https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/banking-service2-watch|jq >> IgnoredViolation-${BUILD_NUMBER}.log'
+        sh 'curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/banking-service2-watch|jq >> IgnoredViolation-${BUILD_NUMBER}.log'
 
         sh 'ls -rlt'
 
