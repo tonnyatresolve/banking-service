@@ -76,7 +76,8 @@ node {
 
         sh 'echo ${WORKSPACE}'
         sh 'echo ${JOB_NAME}'
-        sh 'rm -rf ${WORKSPACE}/Build-*.log'
+        sh 'rm -rf ${WORKSPACE}/ScanResult-*.log'
+        sh 'rm -rf ${WORKSPACE}/IgnoredViolation-*.log'
 
         if (scanResult.isFoundVulnerable()){
           error('Stopping early… got Xray issues ')
