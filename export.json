@@ -8,5 +8,7 @@
   "failIfEmpty" : true,
   "m2" : false,
   "incremental" : false,
-  "excludeContent" : true
+  "excludeContent" : true,
+  "excludeArtifactBundles" : false,
+  "exportMissionControl" : false
 }
