@@ -1,11 +1,9 @@
 node {
-    def JFROG_HOST = 'https://jfartifactory.resolve.local:8081'
-
     stage ('Git checkout') {
         git url: 'https://github.com/tonnyatresolve/test-frog-notification.git'
     }
 
     stage ('Export system data') {
-        sh 'curl --user $creds -X POST -H "Content-Type: application/json" ${JFROG_HOST}/api/export/system -d export.json' 
+        sh 'curl --user $creds -X POST -H "Content-Type: application/json" https://jfartifactory.resolve.local:8081/api/export/system -d export.json' 
     }
 }
