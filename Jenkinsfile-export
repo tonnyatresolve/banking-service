@@ -4,6 +4,6 @@ node {
     }
 
     stage ('Export system data') {
-        sh 'curl --user $creds -X POST -H "Content-Type: application/json" https://jfartifactory.resolve.local:8081/artifactory/api/export/system -d export.json' 
+        sh 'curl --user $creds -X POST -H "Content-Type: application/json" https://jfartifactory.resolve.local:8081/artifactory/api/export/system -d @export.json' 
     }
 }
