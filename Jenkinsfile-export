@@ -1,7 +1,8 @@
 node {
     stage ('Test split') {
         def REPO_NAME = "xdo :: sample-microservice-pipeline :: development-xray"
-        def UPDATED_REPO_NAME = REPO_NAME.replace(" :: ", "_").split("_")[0][1]
+        def (p1, p2, p3) = REPO_NAME.replace(" :: ", "_").split("_")
+        def UPDATED_REPO_NAME = p1 + '_' + p2
         echo UPDATED_REPO_NAME
     }
     // stage ('Git checkout') {
