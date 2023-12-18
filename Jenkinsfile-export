@@ -1,9 +1,14 @@
 node {
-    stage ('Git checkout') {
-        git url: 'https://github.com/tonnyatresolve/test-frog-notification.git'
+    stage ('Test split') {
+        def REPO_NAME = "xdo :: sample-microservice-pipeline :: development-xray"
+        def UPDATED_REPO_NAME = REPO_NAME.replace(" :: ", "_").split("_")[0][1]
+        echo UPDATED_REPO_NAME
     }
+    // stage ('Git checkout') {
+    //     git url: 'https://github.com/tonnyatresolve/test-frog-notification.git'
+    // }
 
-    stage ('Export system data') {
-        sh 'curl --user $creds -X POST -H "Content-Type: application/json" https://jfartifactory.resolve.local:8081/artifactory/api/export/system -d @export.json' 
-    }
+    // stage ('Export system data') {
+    //     sh 'curl --user $creds -X POST -H "Content-Type: application/json" https://jfartifactory.resolve.local:8081/artifactory/api/export/system -d @export.json' 
+    // }
 }
