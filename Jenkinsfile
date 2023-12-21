@@ -34,10 +34,13 @@ node {
     }
 
     stage ('Xray artifactory scan') {
-      def buildName = java.net.URLEncoder.encode(buildInfo.name, "UTF-8").replace("+", "%20").replace("%3A", ":");
+      def buildName = buildInfo.name
       echo buildName
       def buildNumber = buildInfo.number
       echo buildNumber
+      def (p1, p2, p3) = buildName.replace(" :: ", "_")
+      def WATCH_NAME = p1 + '_' + p2
+      echo WATCH_NAME
       scanConfig = []
       // scanResult = []
 
@@ -59,7 +62,7 @@ node {
         def logFile = 'ScanResult'+'-'+buildNumber+'.log'
         writeFile(file: logFile, text: result, encoding: "UTF-8")
 
-        sh 'curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/xdo_sample|jq >> IgnoredViolation-${BUILD_NUMBER}.log'
+        sh 'curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log'
 
         sh 'ls -rlt'
 
