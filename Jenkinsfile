@@ -38,7 +38,7 @@ node {
       echo buildName
       def buildNumber = buildInfo.number
       echo buildNumber
-      def (p1, p2, p3) = buildName.replace(" :: ", "_")
+      def (p1, p2, p3) = buildName.replace(" :: ", "_").split("_")
       def WATCH_NAME = p1 + '_' + p2
       echo WATCH_NAME
       scanConfig = []
