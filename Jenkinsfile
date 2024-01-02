@@ -75,7 +75,12 @@ node {
           ]
         }"""
 
-        server.upload spec: uploadSpec, failNoOp: true
+        def xrayBuildInfo.name = buildInfo.name
+        def xrayBuildInfo.number = buildInfo.number + '.xray'
+
+        def xrayBuildInfo = server.upload spec: uploadSpec, buildInfo: xrayBuildInfo
+
+        server.publishBuildInfo xrayBuildInfo
 
         sh 'echo ${WORKSPACE}'
         sh 'echo ${JOB_NAME}'
