@@ -30,7 +30,7 @@ node {
         //rtMaven.run pom: 'pom.xml', goals: 'deploy', buildInfo: buildInfo
         
         // Publish build info
-        server.publishBuildInfo buildInfo
+        // server.publishBuildInfo buildInfo
     }
 
     stage ('Xray artifactory scan') {
@@ -75,12 +75,12 @@ node {
           ]
         }"""
 
-        def xrayBuildInfo = server.upload spec: uploadSpec
+        server.upload spec: uploadSpec, buildInfo: buildInfo
 
-        xrayBuildInfo.name = buildInfo.name
-        xrayBuildInfo.number = buildInfo.number
+        // xrayBuildInfo.name = buildInfo.name
+        // xrayBuildInfo.number = buildInfo.number
 
-        server.publishBuildInfo xrayBuildInfo
+        server.publishBuildInfo buildInfo
 
         sh 'echo ${WORKSPACE}'
         sh 'echo ${JOB_NAME}'
