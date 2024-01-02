@@ -33,31 +33,31 @@ node {
         server.publishBuildInfo buildInfo
     }
 
-    stage ('Collect env vars') {
-        buildInfo.env.filter.addExclude("DONT_COLLECT*")
+    // stage ('Collect env vars') {
+    //     buildInfo.env.filter.addExclude("DONT_COLLECT*")
 
-        // By default the filter is configured to exclude "*password*,*secret*,*key*", but since we're overriding this configuration by adding our own exclusion, let's add these excludes:
-        buildInfo.env.filter
-            .addExclude("*password*")        
-            .addExclude("*secret*")        
-            .addExclude("*key*")        
+    //     // By default the filter is configured to exclude "*password*,*secret*,*key*", but since we're overriding this configuration by adding our own exclusion, let's add these excludes:
+    //     buildInfo.env.filter
+    //         .addExclude("*password*")        
+    //         .addExclude("*secret*")        
+    //         .addExclude("*key*")        
 
-        withEnv(['DO_COLLECT_FOO=BAR', 'DONT_COLLECT_FOO=BAR']) {
-            buildInfo.env.collect()
-        }
-    }
+    //     withEnv(['DO_COLLECT_FOO=BAR', 'DONT_COLLECT_FOO=BAR']) {
+    //         buildInfo.env.collect()
+    //     }
+    // }
 
-    stage ('Access build info env vars') {
-        // BAR will printed
-        echo buildInfo.env.vars['DO_COLLECT_FOO']
+    // stage ('Access build info env vars') {
+    //     // BAR will printed
+    //     echo buildInfo.env.vars['DO_COLLECT_FOO']
 
-        // null will be printed, because we excluded it.
-        echo buildInfo.env.vars['DONT_COLLECT_FOO'] 
-    }
+    //     // null will be printed, because we excluded it.
+    //     echo buildInfo.env.vars['DONT_COLLECT_FOO'] 
+    // }
 
-    stage ('Set build retention') {
-        buildInfo.retention maxBuilds: 1, maxDays: 2, doNotDiscardBuilds: ["3"], deleteBuildArtifacts: true
-    }
+    // stage ('Set build retention') {
+    //     buildInfo.retention maxBuilds: 1, maxDays: 2, doNotDiscardBuilds: ["3"], deleteBuildArtifacts: true
+    // }
 
     stage ('Xray artifactory scan') {
       def buildName = buildInfo.name
@@ -101,12 +101,12 @@ node {
           ]
         }"""
 
-        server.upload spec: uploadSpec, buildInfo: buildInfo
+        def xraybuildInfo = server.upload spec: uploadSpec
 
-        // xrayBuildInfo.name = buildInfo.name
-        // xrayBuildInfo.number = buildInfo.number
+        xrayBuildInfo.name = buildInfo.name
+        xrayBuildInfo.number = buildInfo.number
 
-        server.publishBuildInfo buildInfo
+        server.publishBuildInfo xraybuildInfo
 
         sh 'echo ${WORKSPACE}'
         sh 'echo ${JOB_NAME}'
