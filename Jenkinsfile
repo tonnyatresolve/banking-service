@@ -30,7 +30,7 @@ node {
         //rtMaven.run pom: 'pom.xml', goals: 'deploy', buildInfo: buildInfo
         
         // Publish build info
-        // server.publishBuildInfo buildInfo
+        server.publishBuildInfo buildInfo
     }
 
     stage ('Collect env vars') {
