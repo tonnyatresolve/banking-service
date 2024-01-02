@@ -104,7 +104,7 @@ node {
         def xrayBuildInfo = server.upload spec: uploadSpec
 
         xrayBuildInfo.name = buildInfo.name
-        xrayBuildInfo.number = buildInfo.number
+        xrayBuildInfo.number = buildInfo.number + '.xray'
 
         server.publishBuildInfo xrayBuildInfo
 
