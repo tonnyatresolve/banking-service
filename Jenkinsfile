@@ -101,12 +101,12 @@ node {
           ]
         }"""
 
-        def xraybuildInfo = server.upload spec: uploadSpec
+        def xrayBuildInfo = server.upload spec: uploadSpec
 
         xrayBuildInfo.name = buildInfo.name
         xrayBuildInfo.number = buildInfo.number
 
-        server.publishBuildInfo xraybuildInfo
+        server.publishBuildInfo xrayBuildInfo
 
         sh 'echo ${WORKSPACE}'
         sh 'echo ${JOB_NAME}'
