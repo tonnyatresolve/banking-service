@@ -65,7 +65,8 @@ node {
       def buildNumber = buildInfo.number
       echo buildNumber
       def (p1, p2, p3) = buildName.replace(" :: ", "_").split("_")
-      def WATCH_NAME = p1 + '_' + p2
+      def HIGH_WATCH_NAME = p1 + '_' + p2 + '_' + 'high'
+      def LOW_WATCH_NAME = p1 + '_' + p2 + '_' + 'low'
       echo WATCH_NAME
       scanConfig = []
       // scanResult = []
@@ -88,7 +89,8 @@ node {
         def logFile = 'ScanResult'+'-'+buildNumber+'.log'
         writeFile(file: logFile, text: result, encoding: "UTF-8")
 
-        sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log"
+        sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${HIGH_WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log"
+        sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${LOW_WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log"
 
         sh 'ls -rlt'
 
