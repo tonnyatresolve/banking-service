@@ -67,7 +67,8 @@ node {
       def (p1, p2, p3) = buildName.replace(" :: ", "_").split("_")
       def HIGH_WATCH_NAME = p1 + '_' + p2 + '_' + 'high'
       def LOW_WATCH_NAME = p1 + '_' + p2 + '_' + 'low'
-      echo WATCH_NAME
+      echo HIGH_WATCH_NAME
+      echo LOW_WATCH_NAME
       scanConfig = []
       // scanResult = []
 
