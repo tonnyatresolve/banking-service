@@ -92,7 +92,7 @@ node {
 
         sh """curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"builds":[{"name":"${buildName}"}]}' https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored >> IgnoredViolation-${BUILD_NUMBER}.log"""
 
-        sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${LOW_WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log"
+        // sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${LOW_WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log"
 
         sh 'ls -rlt'
 
