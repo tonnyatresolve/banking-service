@@ -90,7 +90,7 @@ node {
         def logFile = 'ScanResult'+'-'+buildNumber+'.log'
         writeFile(file: logFile, text: result, encoding: "UTF-8")
 
-        sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored --header "Content-Type: application/json" --request POST --data '{"builds": [{"name": "${buildName}"}]}'" >> IgnoredViolation-${BUILD_NUMBER}.log"
+        sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored --header 'Content-Type: application/json' --request POST --data '{"builds": [{"name": "${buildName}"}]}'" >> IgnoredViolation-${BUILD_NUMBER}.log"
         // sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${LOW_WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log"
 
         sh 'ls -rlt'
