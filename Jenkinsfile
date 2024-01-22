@@ -5,7 +5,6 @@ node {
     // def scanConfig
     // def scanResult
 
-
     stage ('Git checkout') {
         git url: 'https://github.com/tonnyatresolve/test-frog-notification.git'
     }
@@ -189,6 +188,8 @@ node {
         echo "Deploy"
     }
 
+    interactivePromotion(server, buildInfo)
+
     /*
     stage ('Build Docker') {
         sh 'docker pull openjdk:21-jdk'
@@ -234,4 +235,16 @@ node {
         }
     }
     */
+
+    def interactivePromotion(promoServer, promoBuildInfo) {
+      def promotionConfig = [
+        'buildName'      : promoBuildInfo.name
+        'buildNumber'    : promoBuildInfo.number
+        'targetRepo'     : 'ga-maven'
+        'sourceRepo'     : 'test-maven'
+        'comment'        : 'Test Promotion'
+        'status'         : 'General Availability'
+      ]
+      Artifactory.addInteractivePromotion server: promoServer, promotionConfig: promotionConfig, displayName: "Promote to GA"
+    }
 }
