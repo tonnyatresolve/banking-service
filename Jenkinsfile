@@ -188,9 +188,7 @@ node {
         echo "Deploy"
     }
      
-
     interactivePromotion(server, buildInfo)
-
 
     /*
     stage ('Build Docker') {
@@ -238,7 +236,7 @@ node {
     }
     */
 
-    def interactivePromotion(promoServer, promoBuildInfo) {
+    def interactivePromotion(def promoServer, def promoBuildInfo) {
       def promotionConfig = [
         'buildName'      : promoBuildInfo.name,
         'buildNumber'    : promoBuildInfo.number,
