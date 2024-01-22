@@ -5,8 +5,6 @@ node {
     // def scanConfig
     // def scanResult
 
-    interactivePromotion(server, buildInfo)
-
     stage ('Git checkout') {
         git url: 'https://github.com/tonnyatresolve/test-frog-notification.git'
     }
@@ -190,6 +188,7 @@ node {
         echo "Deploy"
     }
      
+    interactivePromotion(server, buildInfo)
 
     /*
     stage ('Build Docker') {
