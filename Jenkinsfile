@@ -187,8 +187,10 @@ node {
     stage ('Deploy') {
         echo "Deploy"
     }
-     
-    interactivePromotion(server, buildInfo)
+    
+    stage ('Promote') {
+      interactivePromotion(server, buildInfo)
+    }
 
     /*
     stage ('Build Docker') {
