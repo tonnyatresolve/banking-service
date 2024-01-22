@@ -188,9 +188,8 @@ node {
         echo "Deploy"
     }
      
-    stage ('Promotion') {
-      interactivePromotion(server, buildInfo)
-    }
+
+    interactivePromotion(server, buildInfo)
 
 
     /*
@@ -241,11 +240,11 @@ node {
 
     def interactivePromotion(promoServer, promoBuildInfo) {
       def promotionConfig = [
-        'buildName'      : promoBuildInfo.name
-        'buildNumber'    : promoBuildInfo.number
-        'targetRepo'     : 'ga-maven'
-        'sourceRepo'     : 'test-maven'
-        'comment'        : 'Test Promotion'
+        'buildName'      : promoBuildInfo.name,
+        'buildNumber'    : promoBuildInfo.number,
+        'targetRepo'     : 'ga-maven',
+        'sourceRepo'     : 'test-maven',
+        'comment'        : 'Test Promotion',
         'status'         : 'General Availability'
       ]
       Artifactory.addInteractivePromotion server: promoServer, promotionConfig: promotionConfig, displayName: "Promote to GA"
