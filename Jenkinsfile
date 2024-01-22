@@ -238,13 +238,13 @@ node {
 }
 
 def interactivePromotion(def promoServer, def promoBuildInfo) {
-      def promotionConfig = [
-        'buildName'      : promoBuildInfo.name,
-        'buildNumber'    : promoBuildInfo.number,
-        'targetRepo'     : 'ga-maven',
-        'sourceRepo'     : 'test-maven',
-        'comment'        : 'Test Promotion',
-        'status'         : 'General Availability'
-      ]
-      Artifactory.addInteractivePromotion server: promoServer, promotionConfig: promotionConfig, displayName: "Promote to GA"
+    def promotionConfig = [
+      'buildName'      : promoBuildInfo.name,
+      'buildNumber'    : promoBuildInfo.number,
+      'targetRepo'     : 'ga-maven',
+      'sourceRepo'     : 'test-maven',
+      'comment'        : 'Test Promotion',
+      'status'         : 'General Availability'
+    ]
+    Artifactory.addInteractivePromotion server: promoServer, promotionConfig: promotionConfig, displayName: "Promote to GA"
 }
