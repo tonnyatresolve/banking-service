@@ -59,6 +59,7 @@ node {
     // }
 
     stage ('Xray artifactory scan') {
+      def scanBuildInfo = buildInfo
       def buildName = buildInfo.name
       echo buildName
       def buildNumber = buildInfo.number
@@ -77,8 +78,8 @@ node {
 
 
         scanConfig = [
-          'buildName'      : buildInfo.name,
-          'buildNumber'    : buildInfo.number,
+          'buildName'      : scanBuildInfo.name,
+          'buildNumber'    : scanBuildInfo.number,
           'failBuild'      : false,
           'printTable'     : true
         ]
@@ -106,8 +107,8 @@ node {
           ]
         }"""
 
-        def xrayBuildInfo = buildInfo
-        xrayBuildInfo.number = buildInfo.number + '.xray'
+        def xrayBuildInfo = scanBuildInfo
+        xrayBuildInfo.number = scanBuildInfo.number + '.xray'
 
         def uploadBuildInfo = server.upload spec: uploadSpec, buildInfo: xrayBuildInfo
 
