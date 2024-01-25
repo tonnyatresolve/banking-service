@@ -4,7 +4,7 @@ node {
     def buildInfo
     // def scanConfig
     // def scanResult
-
+    
     stage ('Git checkout') {
         git url: 'https://github.com/tonnyatresolve/test-frog-notification.git'
     }
@@ -246,5 +246,14 @@ def interactivePromotion(def promoServer, def promoBuildInfo) {
       'comment'        : 'Test Promotion',
       'status'         : 'General Availability'
     ]
-    Artifactory.addInteractivePromotion server: promoServer, promotionConfig: promotionConfig, displayName: "Promote to GA"
+    def promotionXrayConfig = [
+      'buildName'      : promoBuildInfo.name,
+      'buildNumber'    : promoBuildInfo.number + '.xray',
+      'targetRepo'     : 'ga-maven',
+      'sourceRepo'     : 'test-maven',
+      'comment'        : 'Test Xray Promotion',
+      'status'         : 'General Availability'
+    ]
+    Artifactory.addInteractivePromotion server: promoServer, promotionConfig: promotionConfig, displayName: "Promote artifacts to GA"
+    Artifactory.addInteractivePromotion server: promoServer, promotionConfig: promotionXrayConfig, displayName: "Promote xray log to GA"
 }
