@@ -188,7 +188,7 @@ node {
         echo "Deploy"
     }
 
-    interactivePromotion(server, buildInfo)
+    interactivePromotion(server, buildInfo, xrayBuildInfo)
 
     /*
     stage ('Build Docker') {
@@ -237,7 +237,7 @@ node {
     */
 }
 
-def interactivePromotion(def promoServer, def promoBuildInfo) {
+def interactivePromotion(def promoServer, def promoBuildInfo, def promoXrayBuildInfo) {
     def promotionConfig = [
       'buildName'      : promoBuildInfo.name,
       'buildNumber'    : promoBuildInfo.number,
@@ -247,8 +247,8 @@ def interactivePromotion(def promoServer, def promoBuildInfo) {
       'status'         : 'General Availability'
     ]
     def promotionXrayConfig = [
-      'buildName'      : promoBuildInfo.name,
-      'buildNumber'    : promoBuildInfo.number + '.xray',
+      'buildName'      : promoXrayBuildInfo.name,
+      'buildNumber'    : promoXrayBuildInfo.number,
       'targetRepo'     : 'ga-maven',
       'sourceRepo'     : 'upload-test',
       'comment'        : 'Test Xray Promotion',
