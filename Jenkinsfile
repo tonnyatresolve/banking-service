@@ -250,7 +250,7 @@ def interactivePromotion(def promoServer, def promoBuildInfo) {
       'buildName'      : promoBuildInfo.name,
       'buildNumber'    : promoBuildInfo.number + '.xray',
       'targetRepo'     : 'ga-maven',
-      'sourceRepo'     : 'test-maven',
+      'sourceRepo'     : 'upload-test',
       'comment'        : 'Test Xray Promotion',
       'status'         : 'General Availability'
     ]
