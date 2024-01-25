@@ -187,10 +187,6 @@ node {
     stage ('Deploy') {
         echo "Deploy"
     }
-    
-    stage ('Promote') {
-      interactivePromotion(server, buildInfo)
-    }
 
     /*
     stage ('Build Docker') {
@@ -250,3 +246,5 @@ def interactivePromotion(def promoServer, def promoBuildInfo) {
     ]
     Artifactory.addInteractivePromotion server: promoServer, promotionConfig: promotionConfig, displayName: "Promote to GA"
 }
+
+interactivePromotion(server, buildInfo)
