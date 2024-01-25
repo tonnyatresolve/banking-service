@@ -101,7 +101,7 @@ node {
           "files": [
            {
               "pattern": "*.log",
-              "target": "upload-test/${JOB_NAME}/"
+              "target": "upload-test/xdo/sample/banking-service2/"
             }
           ]
         }"""
