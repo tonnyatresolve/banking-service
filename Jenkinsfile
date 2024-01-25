@@ -188,6 +188,8 @@ node {
         echo "Deploy"
     }
 
+    interactivePromotion(server, buildInfo)
+
     /*
     stage ('Build Docker') {
         sh 'docker pull openjdk:21-jdk'
@@ -246,5 +248,3 @@ def interactivePromotion(def promoServer, def promoBuildInfo) {
     ]
     Artifactory.addInteractivePromotion server: promoServer, promotionConfig: promotionConfig, displayName: "Promote to GA"
 }
-
-interactivePromotion(server, buildInfo)
