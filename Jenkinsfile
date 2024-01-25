@@ -108,8 +108,8 @@ node {
 
         def xrayBuildInfo = server.upload spec: uploadSpec
 
-        def xrayBuildInfo.name = buildInfo.name
-        def xrayBuildInfo.number = buildInfo.number + '.xray'
+        xrayBuildInfo.name = buildInfo.name
+        xrayBuildInfo.number = buildInfo.number + '.xray'
 
         server.publishBuildInfo xrayBuildInfo
 
@@ -188,7 +188,7 @@ node {
         echo "Deploy"
     }
 
-    interactivePromotion(server, buildInfo, xrayBuildInfo)
+    interactivePromotion(server, buildInfo)
 
     /*
     stage ('Build Docker') {
@@ -237,7 +237,7 @@ node {
     */
 }
 
-def interactivePromotion(def promoServer, def promoBuildInfo, def promoXrayBuildInfo) {
+def interactivePromotion(def promoServer, def promoBuildInfo) {
     def promotionConfig = [
       'buildName'      : promoBuildInfo.name,
       'buildNumber'    : promoBuildInfo.number,
@@ -247,8 +247,8 @@ def interactivePromotion(def promoServer, def promoBuildInfo, def promoXrayBuild
       'status'         : 'General Availability'
     ]
     def promotionXrayConfig = [
-      'buildName'      : promoXrayBuildInfo.name,
-      'buildNumber'    : promoXrayBuildInfo.number,
+      'buildName'      : promoBuildInfo.name,
+      'buildNumber'    : promoBuildInfo.number + '.xray',
       'targetRepo'     : 'ga-maven',
       'sourceRepo'     : 'upload-test',
       'comment'        : 'Test Xray Promotion',
