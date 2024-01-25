@@ -107,7 +107,6 @@ node {
         }"""
 
         def xrayBuildInfo = buildInfo
-        xrayBuildInfo.name = buildInfo.name
         xrayBuildInfo.number = buildInfo.number + '.xray'
 
         def uploadBuildInfo = server.upload spec: uploadSpec, buildInfo: xrayBuildInfo
