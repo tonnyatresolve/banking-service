@@ -107,7 +107,8 @@ node {
           ]
         }"""
 
-        def xrayBuildInfo = scanBuildInfo
+        def xrayBuildInfo = Artifactory.newBuildInfo()
+        xrayBuildInfo.name = scanBuildInfo.name
         xrayBuildInfo.number = scanBuildInfo.number + '.xray'
 
         def uploadBuildInfo = server.upload spec: uploadSpec, buildInfo: xrayBuildInfo
