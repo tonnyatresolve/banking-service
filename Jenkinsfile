@@ -116,7 +116,7 @@ node {
 
         def IMPACTED_ARTIFACT = 'build://' + buildName + ":" + BUILD_NUMBER
 
-        sh """curl --user $creds --header 'Content-Type: application/json' --request POST 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations/${REPORT_ID}?direction=asc&page_num=1&num_of_rows=10000'|jq '.row[]| select(.impacted_artifact == "${IMPACTED_ARTIFACT}")' >> IgnoredViolation-${BUILD_NUMBER}.log"""
+        sh """curl --user $creds --header 'Content-Type: application/json' --request POST 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations/${REPORT_ID}?direction=asc&page_num=1&num_of_rows=10000'|jq '.rows[]| select(.impacted_artifact == "${IMPACTED_ARTIFACT}")' >> IgnoredViolation-${BUILD_NUMBER}.log"""
         
 
         // sh """
