@@ -104,14 +104,20 @@ node {
         while (true) {
            sh "sleep 5"
            def REPORT_STATUS = sh(script: """curl --user admin:P@ssw0rd --header 'Content-Type: application/json' --request GET 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/${REPORT_ID}'|jq .status""", returnStdout: true).trim()
-           echo REPORT_STATUS
            String str = "\"completed\""
+           echo REPORT_STATUS
+           echo str
            if ( REPORT_STATUS.equals(str) ){
              break
            } 
         }
 
         sh "echo 'report generate'"
+
+        def IMPACTED_ARTIFACT = 'build://' + buildName + ":" + BUILD_NUMBER
+
+        sh """curl --user $creds --header 'Content-Type: application/json' --request POST 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations/${REPORT_ID}?direction=asc&page_num=1&num_of_rows=10000'|jq '.row[]| select(.impacted_artifact == "${IMPACTED_ARTIFACT}")' >> IgnoredViolation-${BUILD_NUMBER}.log"""
+        
 
         // sh """
           // echo ${REPORT_ID} \
