@@ -100,8 +100,8 @@ node {
         // sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${LOW_WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log"
 
         sh """
-          export REPORT_ID = `curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"name":"${REPORT_NAME}","resources":{"builds":{"names":["${buildName}"],"number_of_latest_versions":2}},"filters":{"violation_status":"ignored"}}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations'|jq '.report_id'`
-          echo ${REPORT_ID}
+          REPORT_ID = `curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"name":"${REPORT_NAME}","resources":{"builds":{"names":["${buildName}"],"number_of_latest_versions":2}},"filters":{"violation_status":"ignored"}}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations'|jq '.report_id'`
+          echo $REPORT_ID
         """
 
 
