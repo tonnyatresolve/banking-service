@@ -93,13 +93,13 @@ node {
 
         // sh """curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"builds":[{"name":"${buildName}"}]}' https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored |jq '.data[] | select(.impacted_artifact.version == "${BUILD_NUMBER}")| {"violation_id": .violation_id, "issue_id": .issue_id, "created": .created, "watch_name": .watch_name, "description": .description, "severity": .severity, "properties": .properties, "matched_policies": .matched_policies, "ignore_rule_details": .ignore_rule_details}' >> IgnoredViolation-${BUILD_NUMBER}.log"""
         // sh """
-             // curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"builds":[{"name":"${buildName}"}]}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored?limit=1000000&order_by=updated&offset=1' |jq '.data[] | select(.impacted_artifact.version == "${BUILD_NUMBER}")' >> IgnoredViolation-${BUILD_NUMBER}.log
+             curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"builds":[{"name":"${buildName}"}]}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored?limit=1000000&order_by=updated&offset=1' |jq '.data[] | select(.impacted_artifact.version == "${BUILD_NUMBER}")' >> IgnoredViolation-${BUILD_NUMBER}.log
         // """        
         // sh """curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"builds":[{"name":"${buildName}","version":"${BUILD_NUMBER}"}]}' https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored |jq '.' >> IgnoredViolation-${BUILD_NUMBER}.log"""
 
         // sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${LOW_WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log"
 
-        def REPORT_ID = sh(returnStdout: true, script: "curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"resources":{"builds":{"names":["${buildName}"],"number_of_latest_versions":2}},"filters":{"violation_status":"ignored"}}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations'|jq '.report_id'")
+        def REPORT_ID = sh(returnStdout: true, script: 'curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"resources":{"builds":{"names":["${buildName}"],"number_of_latest_versions":2}},"filters":{"violation_status":"ignored"}}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations'|jq '.report_id'')
         echo ${REPORT_ID}
 
 
