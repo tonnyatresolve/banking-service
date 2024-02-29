@@ -103,6 +103,13 @@ node {
         
         sh """
           echo ${REPORT_ID}
+
+          until ["$(curl --user $creds --header 'Content-Type: application/json' --request GET 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/${REPORT_ID}'|jq .status)" == "completed"]
+          do
+            sleep 5
+          done
+          
+          echo "report gen"
         """
 
         sh 'ls -rlt'
