@@ -101,7 +101,7 @@ node {
 
         sh """
           REPORT_ID = `curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"name":"${REPORT_NAME}","resources":{"builds":{"names":["${buildName}"],"number_of_latest_versions":2}},"filters":{"violation_status":"ignored"}}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations'|jq '.report_id'`
-          echo $REPORT_ID
+          echo \$REPORT_ID
         """
 
 
