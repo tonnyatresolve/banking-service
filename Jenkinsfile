@@ -99,8 +99,10 @@ node {
 
         // sh "curl --user $creds https://jfartifactory.resolve.local:8081/xray/api/v1/violations/ignored/${LOW_WATCH_NAME}|jq >> IgnoredViolation-${BUILD_NUMBER}.log"
 
-        def REPORT_ID = sh(returnStdout: true, script: "curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"resources":{"builds":{"names":["${buildName}"],"number_of_latest_versions":2}},"filters":{"violation_status":"ignored"}}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations'|jq '.report_id'").trim()
-        echo ${REPORT_ID}
+        sh """
+          REPORT_ID = `curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"name":"${REPORT_NAME}","resources":{"builds":{"names":["${buildName}"],"number_of_latest_versions":2}},"filters":{"violation_status":"ignored"}}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations'|jq '.report_id'`
+          echo ${REPORT_ID}
+        """
 
 
         sh 'ls -rlt'
