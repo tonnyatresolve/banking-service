@@ -104,8 +104,12 @@ node {
         while (true) {
            sh "sleep 5"
            def REPORT_STATUS = sh(script: """curl --user admin:P@ssw0rd --header 'Content-Type: application/json' --request GET 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/${REPORT_ID}'|jq .status""", returnStdout: true).trim()
-           if ( ${REPORT_STATUS} == "completed" ) break
+           if (REPORT_STATUS == "completed" ){
+             break
+           } 
         }
+
+        sh "echo 'report generate'"
 
         // sh """
           // echo ${REPORT_ID} \
