@@ -118,7 +118,7 @@ node {
 
         sh """curl --user $creds --header 'Content-Type: application/json' --request POST 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations/${REPORT_ID}?direction=asc&page_num=1&num_of_rows=10000'|jq '.rows[]| select(.impacted_artifact == "${IMPACTED_ARTIFACT}")' >> IgnoredViolation-${BUILD_NUMBER}.log"""
         
-        sh """curl --user $creds --header 'Content-Type: application/json' --request DELETE 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations/${REPORT_ID}'
+        sh """curl --user $creds --header 'Content-Type: application/json' --request DELETE 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/{${REPORT_ID}}'
 
         // sh """
           // echo ${REPORT_ID} \
