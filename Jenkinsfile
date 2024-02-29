@@ -102,15 +102,15 @@ node {
         def REPORT_ID = sh(script: """curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"name":"${REPORT_NAME}","resources":{"builds":{"names":["${buildName}"],"number_of_latest_versions":2}},"filters":{"violation_status":"ignored"}}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations'|jq '.report_id'""", returnStdout: true).trim()
         
         sh """
-          echo ${REPORT_ID}
-
-          until ["$(curl --user $creds --header 'Content-Type: application/json' --request GET 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/${REPORT_ID}'|jq .status)" == "completed"]
-          do
-            sleep 5
-          done
+          echo ${REPORT_ID} \
+        
+          until ["$(curl --user $creds --header 'Content-Type: application/json' --request GET 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/${REPORT_ID}'|jq .status)" == "completed"] \
+          do \
+            sleep 5 \
+          done \
           
           echo "report gen"
-          """
+        """
 
         sh 'ls -rlt'
 
