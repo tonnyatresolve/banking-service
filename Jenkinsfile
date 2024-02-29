@@ -101,14 +101,11 @@ node {
 
         def REPORT_ID = sh(script: """curl --user $creds --header 'Content-Type: application/json' --request POST --data '{"name":"${REPORT_NAME}","resources":{"builds":{"names":["${buildName}"],"number_of_latest_versions":2}},"filters":{"violation_status":"ignored"}}' 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/violations'|jq '.report_id'""", returnStdout: true).trim()
         
-        while [true]
-        do
-           sleep 5
+        while (true) {
+           sh "sleep 5"
            def REPORT_STATUS = sh(script: """curl --user admin:P@ssw0rd --header 'Content-Type: application/json' --request GET 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/${REPORT_ID}'|jq .status""", returnStdout: true).trim()
-           if [ ${REPORT_STATUS} == "completed" ]; then
-             break
-           fi
-        done
+           if ( ${REPORT_STATUS} == "completed" ) break
+        }
 
         // sh """
           // echo ${REPORT_ID} \
