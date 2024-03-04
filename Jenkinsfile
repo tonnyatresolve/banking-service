@@ -120,7 +120,7 @@ node {
         
         sh """curl --user $creds --header 'Content-Type: application/json' --request DELETE 'https://jfartifactory.resolve.local:8081/xray/api/v1/reports/{${REPORT_ID}}'"""
 
-        sh """curl --user $creds --header 'Content-Type: application/json' --request GET 'https://jfartifactory.resolve.local:8081/xray/api/v1/ignore_rules' >> IgnoredViolation-${BUILD_NUMBER}.log"""
+        sh """curl --user $creds --header 'Content-Type: application/json' --request GET 'https://jfartifactory.resolve.local:8081/xray/api/v1/ignore_rules'|jq .data[] >> IgnoredViolation-${BUILD_NUMBER}.log"""
 
         // sh """
           // echo ${REPORT_ID} \
